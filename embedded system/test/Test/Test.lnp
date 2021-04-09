@@ -1,0 +1,8 @@
+"0_01_12g.obj",
+"EEPROM.obj",
+"HX711.obj",
+"LCD1602.obj",
+"MAIN.obj",
+"Sch51.obj",
+"weight.obj" 
+TO "Test" 

@@ -1,0 +1,59 @@
+clear;pause;
+%% Fuzzification: Convert the numerical input to degree of membership
+data = 4000*rand(1000,1)/204.8-10;
+ue = zeros(1,5);
+ude = zeros(1,5);
+e = zeros(1,1001);
+de = zeros(1,1000);
+force = zeros(1,1000);
+% % MFs for error
+% fe{1} = @(x)bMF(x,[-inf,-20,-10,-5]);
+% fe{2} = @(x)cMF(x,[-10,-5,0]);
+% fe{3} = @(x)cMF(x,[-5,0,5]);
+% fe{4} = @(x)cMF(x,[0,5,10]);
+% fe{5} = @(x)bMF(x,[5,10,20,inf]);
+% % MFs for change in error
+% fde{1} = @(x)bMF(x,[-inf,-20,-5,-2.5]);
+% fde{2} = @(x)cMF(x,[-5,-2.5,0]);
+% fde{3} = @(x)cMF(x,[-5,0,5]);
+% fde{4} = @(x)cMF(x,[0,2.5,5]);
+% fde{5} = @(x)bMF(x,[2.5,5,20,inf]);
+
+% MFs for error
+fe{1} = [-inf,-20,-10,-5];
+fe{2} = [-10,-5,0];
+fe{3} = [-5,0,5];
+fe{4} = [0,5,10];
+fe{5} = [5,10,20,inf];
+% MFs for change in error
+fde{1} = [-inf,-20,-5,-2.5];
+fde{2} = [-5,-2.5,0];
+fde{3} = [-5,0,5];
+fde{4} = [0,2.5,5];
+fde{5} = [2.5,5,20,inf];
+
+Rule = [...
+    -15 -15 -7.5 -7.5 0
+    -15 -7.5 -7.5 0 7.5
+    -7.5 -7.5 0 7.5 7.5
+    -7.5 0 7.5 7.5 15
+    0 7.5 7.5 15 15];
+
+for i = 1:1000
+% y = adcinp(608,0,1,1)/204.8-10;
+y = data(i);
+e(i+1) = y;
+de(i) = e(i+1) - e(i);
+for j = 1:5
+  
+            ue(j) = bMF(e(i+1),fe{j});
+            ude(j) = bMF(de(i),);
+end
+w = ue'*ude; % use prod as AND operation
+force(i) = (sum(sum(w.*Rule))/sum(sum(w))+10)*204.8;
+%dacout(608,0,force(i));
+end
+
+
+
+

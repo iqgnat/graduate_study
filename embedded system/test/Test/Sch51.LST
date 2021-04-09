@@ -1,0 +1,203 @@
+C51 COMPILER V9.52.0.0   SCH51                                                             12/01/2015 17:11:54 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE SCH51
+OBJECT MODULE PLACED IN Sch51.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Sch51.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include "Main.h"
+   2          #include "Port.h"
+   3          #include "Sch51.h"
+   4          
+   5          // ------ Public variable definitions ------------------------------
+   6          
+   7          // The array of tasks
+   8          sTask SCH_tasks_G[SCH_MAX_TASKS];
+   9          
+  10          tByte Error_code_G = 0;
+  11          
+  12          // ------ Private function prototypes ------------------------------
+  13          
+  14          static void SCH_Go_To_Sleep(void);
+  15          
+  16          // ------ Private variables ----------------------------------------
+  17          
+  18          // Keeps track of time since last error was recorded (see below)
+  19          static tWord Error_tick_count_G;
+  20          
+  21          // The code of the last error (reset after ~1 minute)
+  22          static tByte Last_error_code_G;
+  23          
+  24          
+  25          /*------------------------------------------------------------------*-
+  26          
+  27          -*------------------------------------------------------------------*/
+  28          void SCH_Dispatch_Tasks(void) 
+  29             {
+  30   1         tByte Index;
+  31   1      
+  32   1         // Dispatches (runs) the next task (if one is ready)
+  33   1         for (Index = 0; Index < SCH_MAX_TASKS; Index++)
+  34   1            {
+  35   2            if (SCH_tasks_G[Index].RunMe > 0) 
+  36   2               {
+  37   3               (*SCH_tasks_G[Index].pTask)();  // Run the task
+  38   3      
+  39   3               SCH_tasks_G[Index].RunMe -= 1;   // Reset / reduce RunMe flag
+  40   3      
+  41   3               // Periodic tasks will automatically run again
+  42   3               // - if this is a 'one shot' task, remove it from the array
+  43   3               if (SCH_tasks_G[Index].Period == 0)
+  44   3                  {
+  45   4                  SCH_Delete_Task(Index);
+  46   4                  }
+  47   3               }
+  48   2            }
+  49   1      
+  50   1         // Report system status
+  51   1         SCH_Report_Status();  
+  52   1      
+  53   1         // The scheduler enters idle mode at this point 
+  54   1         SCH_Go_To_Sleep();          
+  55   1         }
+C51 COMPILER V9.52.0.0   SCH51                                                             12/01/2015 17:11:54 PAGE 2   
+
+  56          
+  57          /*------------------------------------------------------------------*-
+  58          
+  59          -*------------------------------------------------------------------*/
+  60          tByte SCH_Add_Task(void (code * pFunction)(), 
+  61                             const tWord DELAY, 
+  62                             const tWord PERIOD)    
+  63             {
+  64   1         tByte Index = 0;
+  65   1         
+  66   1         // First find a gap in the array (if there is one)
+  67   1         while ((SCH_tasks_G[Index].pTask != 0) && (Index < SCH_MAX_TASKS))
+  68   1            {
+  69   2            Index++;
+  70   2            } 
+  71   1         
+  72   1         // Have we reached the end of the list?   
+  73   1         if (Index == SCH_MAX_TASKS)
+  74   1            {
+  75   2            // Task list is full
+  76   2            //
+  77   2            // Set the global error variable
+  78   2            Error_code_G = ERROR_SCH_TOO_MANY_TASKS;
+  79   2      
+  80   2            // Also return an error code
+  81   2            return SCH_MAX_TASKS;  
+  82   2            }
+  83   1            
+  84   1         // If we're here, there is a space in the task array
+  85   1         SCH_tasks_G[Index].pTask  = pFunction;
+  86   1           
+  87   1         SCH_tasks_G[Index].Delay  = DELAY;
+  88   1         SCH_tasks_G[Index].Period = PERIOD;
+  89   1      
+  90   1         SCH_tasks_G[Index].RunMe  = 0;
+  91   1      
+  92   1         return Index; // return position of task (to allow later deletion)
+  93   1         }
+  94          /*------------------------------------------------------------------*-
+  95          -*------------------------------------------------------------------*/
+  96          bit SCH_Delete_Task(const tByte TASK_INDEX) 
+  97             {
+  98   1         bit Return_code;
+  99   1      
+ 100   1         if (SCH_tasks_G[TASK_INDEX].pTask == 0)
+ 101   1            {
+ 102   2            // No task at this location...
+ 103   2            //
+ 104   2            // Set the global error variable
+ 105   2            Error_code_G = ERROR_SCH_CANNOT_DELETE_TASK;
+ 106   2      
+ 107   2            // ...also return an error code
+ 108   2            Return_code = RETURN_ERROR;
+ 109   2            }
+ 110   1         else
+ 111   1            {
+ 112   2            Return_code = RETURN_NORMAL;
+ 113   2            }      
+ 114   1         
+ 115   1         SCH_tasks_G[TASK_INDEX].pTask   = 0x0000;
+ 116   1         SCH_tasks_G[TASK_INDEX].Delay   = 0;
+ 117   1         SCH_tasks_G[TASK_INDEX].Period  = 0;
+C51 COMPILER V9.52.0.0   SCH51                                                             12/01/2015 17:11:54 PAGE 3   
+
+ 118   1      
+ 119   1         SCH_tasks_G[TASK_INDEX].RunMe   = 0;
+ 120   1      
+ 121   1         return Return_code;       // return status
+ 122   1         }
+ 123          
+ 124          /*------------------------------------------------------------------*-
+ 125          -*------------------------------------------------------------------*/
+ 126          void SCH_Report_Status(void)
+ 127             {
+ 128   1      #ifdef SCH_REPORT_ERRORS
+ 129   1         // ONLY APPLIES IF WE ARE REPORTING ERRORS
+ 130   1         // Check for a new error code
+ 131   1         if (Error_code_G != Last_error_code_G)
+ 132   1            {
+ 133   2            // Negative logic on LEDs assumed
+ 134   2            Error_port = 255 - Error_code_G;
+ 135   2            
+ 136   2            Last_error_code_G = Error_code_G;
+ 137   2      
+ 138   2            if (Error_code_G != 0)
+ 139   2               {
+ 140   3               Error_tick_count_G = 60000;
+ 141   3               }
+ 142   2            else
+ 143   2               {
+ 144   3               Error_tick_count_G = 0;
+ 145   3               }
+ 146   2            }
+ 147   1         else
+ 148   1            {
+ 149   2            if (Error_tick_count_G != 0)
+ 150   2               {
+ 151   3               if (--Error_tick_count_G == 0)
+ 152   3                  {
+ 153   4                  Error_code_G = 0; // Reset error code
+ 154   4                  }
+ 155   3               }
+ 156   2            }
+ 157   1      #endif   
+ 158   1         }
+ 159          
+ 160          /*------------------------------------------------------------------*-
+ 161          -*------------------------------------------------------------------*/
+ 162          void SCH_Go_To_Sleep()
+ 163             {
+ 164   1         PCON |= 0x01;    // Enter idle mode (generic 8051 version)
+ 165   1      
+ 166   1         // Entering idle mode requires TWO consecutive instructions 
+ 167   1         // on 80c515 / 80c505 - to avoid accidental triggering
+ 168   1         //PCON |= 0x01;    // Enter idle mode (#1)
+ 169   1         //PCON |= 0x20;    // Enter idle mode (#2)
+ 170   1         }
+ 171          
+ 172          /*------------------------------------------------------------------*-
+ 173            ---- END OF FILE -------------------------------------------------
+ 174          -*------------------------------------------------------------------*/
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    306    ----
+   CONSTANT SIZE    =   ----    ----
+C51 COMPILER V9.52.0.0   SCH51                                                             12/01/2015 17:11:54 PAGE 4   
+
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     25       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       1
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,63 @@
+C51 COMPILER V9.52.0.0   HX711                                                             12/01/2015 17:11:54 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE HX711
+OBJECT MODULE PLACED IN HX711.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE HX711.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include "HX711.h"
+   2          //****************************************************
+   3          //延时函数
+   4          //****************************************************
+   5          void Delay__hx711_us(void)
+   6          {
+   7   1        _nop_();
+   8   1        _nop_();
+   9   1      }
+  10          
+  11          //读取HX711
+  12          unsigned long HX711_Read(void)  //增益128
+  13          {
+  14   1        unsigned long count; 
+  15   1        unsigned char i; 
+  16   1          HX711_DOUT=1; 
+  17   1        Delay__hx711_us();
+  18   1          HX711_SCK=0; 
+  19   1          count=0; 
+  20   1          while(HX711_DOUT); 
+  21   1          for(i=0;i<24;i++)
+  22   1        { 
+  23   2            HX711_SCK=1; 
+  24   2            count=count<<1; 
+  25   2          HX711_SCK=0; 
+  26   2            if(HX711_DOUT)
+  27   2            count++; 
+  28   2        } 
+  29   1        HX711_SCK=1; 
+  30   1          count=count^0x800000;//第25个脉冲下降沿来时，转换数据
+  31   1        Delay__hx711_us();
+  32   1        HX711_SCK=0;  
+  33   1        return(count);
+  34   1      }
+  35          
+  36          
+  37          
+  38          
+  39          
+  40          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     64    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

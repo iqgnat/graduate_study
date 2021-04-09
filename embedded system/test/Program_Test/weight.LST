@@ -1,0 +1,169 @@
+C51 COMPILER V9.52.0.0   WEIGHT                                                            12/01/2015 20:27:50 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE WEIGHT
+OBJECT MODULE PLACED IN weight.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE weight.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          //#include "EEPROM.H"
+   2          #include "LCD1602.h"
+   3          #include "HX711.h"
+   4          #include "WEIGHT.H"
+   5          
+   6          //定义变量
+   7          unsigned char KEY_NUM = 0;   //用来存放按键按下的键值
+   8          unsigned long HX711_Buffer = 0;  //用来存放HX711读取出来的数据
+   9          unsigned long Weight_Maopi = 0; //用来存放毛皮数据
+  10          long Weight_Shiwu = 0;          //用来存放实物重量
+  11          long Max_Value = 0;             //用来存放设置最大值
+  12          char maxValueTable[4] = {1,0,0,0};
+  13          unsigned char state = 0;    //用来存放设置状态
+  14          unsigned char Blink_Speed = 0;
+  15          #define Blink_Speed_Max 6          //该值可以改变设置指针闪烁频率
+  16          
+  17          //校准参数
+  18          //当发现测试出来的重量偏大时，增加该数值。
+  19          //如果测试出来的重量偏小时，减小改数值。
+  20          #define GapValue 100
+  21          
+  22          //传感器最大测量值，单位是g
+  23          #define AlarmValue 5000     
+  24          
+  25          //****************************************************
+  26          //主函数
+  27          //****************************************************
+  28          
+  29          void weight_initial(void)
+  30          {
+  31   1        Init_LCD1602();           //初始化LCD1602
+  32   1        LCD1602_write_com(0x80);      //设置LCD1602指针
+  33   1        LCD1602_write_word("Welcome to use!");
+  34   1      }
+  35            
+  36          void weight_update(void )
+  37          {
+  38   1      
+  39   1              Get_Weight();   
+  40   1        
+  41   1          //display current weight
+  42   1          LCD1602_write_com(0x80);
+  43   1              LCD1602_write_word("Weight=");
+  44   1          LCD1602_write_data(Weight_Shiwu%10000/1000 + 0x30);
+  45   1          LCD1602_write_data('.');
+  46   1          LCD1602_write_data(Weight_Shiwu%1000/100 + 0x30);
+  47   1          LCD1602_write_data(Weight_Shiwu%100/10 + 0x30);
+  48   1          LCD1602_write_data(Weight_Shiwu%10 + 0x30);   
+  49   1          LCD1602_write_word("Kg");
+  50   1      
+  51   1      //        if(Weight_Shiwu >= Max_Value || Weight_Shiwu >= AlarmValue)         //超过设置最大值或者传感器本
+             -身量程最大值报警  
+  52   1      //    {
+  53   1      //      Buzzer = 0; 
+  54   1      //    }
+C51 COMPILER V9.52.0.0   WEIGHT                                                            12/01/2015 20:27:50 PAGE 2   
+
+  55   1      //    else
+  56   1      //    {
+  57   1      //      Buzzer = 1;
+  58   1      //    }
+  59   1         // }
+  60   1        }
+  61          //****************************************************
+  62          //称重
+  63          //****************************************************
+  64          void Get_Weight()
+  65          {
+  66   1        Weight_Shiwu = HX711_Read();
+  67   1        if(Weight_Shiwu >= 0)     
+  68   1        { 
+  69   2          Weight_Shiwu = (unsigned long)((float)Weight_Shiwu/GapValue);   //计算实物的实际重量
+  70   2        }
+  71   1        else
+  72   1        {
+  73   2          Weight_Shiwu = 0;
+  74   2        }
+  75   1      }
+  76          
+  77          
+  78          
+  79          //****************************************************
+  80          //MS延时函数(12M晶振下测试)
+  81          //****************************************************
+  82          /*
+  83          void Delay_ms(unsigned int n)
+  84          {
+  85            unsigned int  i,j;
+  86            for(i=0;i<n;i++)
+  87              for(j=0;j<123;j++);
+  88          }
+  89          */
+  90          
+  91          
+  92          
+  93          //****************************************************
+  94          //按键扫描程序
+  95          //****************************************************
+  96          /*
+  97          unsigned char Scan_Key()
+  98          { 
+  99              if( KEY1 == 0 )           //按键扫描
+ 100            {
+ 101              Delay_ms(10);         //延时去抖
+ 102              if( KEY1 == 0 )
+ 103              {
+ 104                Buzzer_Di();
+ 105                while(KEY1 == 0);     //等待松手
+ 106                return 1;
+ 107              }
+ 108            }
+ 109              if( KEY2 == 0 )           //按键扫描
+ 110            {
+ 111              Delay_ms(10);         //延时去抖
+ 112              if( KEY2 == 0 )
+ 113              {
+ 114                Buzzer_Di();
+ 115                while(KEY2 == 0);     //等待松手
+ 116                return 2;
+C51 COMPILER V9.52.0.0   WEIGHT                                                            12/01/2015 20:27:50 PAGE 3   
+
+ 117              }
+ 118            }
+ 119              if( KEY3 == 0 )           //按键扫描
+ 120            {
+ 121              Delay_ms(10);         //延时去抖
+ 122              if( KEY3 == 0 )
+ 123              {
+ 124                Buzzer_Di();
+ 125                while(KEY3 == 0);     //等待松手
+ 126                return 3;
+ 127              }
+ 128            }
+ 129            if( KEY4 == 0 )           //按键扫描
+ 130            {
+ 131              Delay_ms(10);         //延时去抖
+ 132              if( KEY4 == 0 )
+ 133              {
+ 134                Buzzer_Di();
+ 135                while(KEY4 == 0);     //等待松手
+ 136                return 4;
+ 137              }
+ 138            }
+ 139              return 0;
+ 140          }
+ 141          */
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    249    ----
+   CONSTANT SIZE    =     27    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     23    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

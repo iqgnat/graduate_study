@@ -1,0 +1,1651 @@
+Analysis & Synthesis report for embeded_system
+Wed Dec 02 14:00:05 2015
+Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. Analysis & Synthesis DSP Block Usage Summary
+ 10. Analysis & Synthesis IP Cores Summary
+ 11. State Machine - |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|state
+ 12. Registers Removed During Synthesis
+ 13. Removed Registers Triggering Further Register Optimizations
+ 14. General Register Statistics
+ 15. Inverted Register Statistics
+ 16. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 17. Source assignments for mc8051_ramx:inst2|altsyncram:altsyncram_component|altsyncram_hua1:auto_generated
+ 18. Source assignments for mc8051_ram:inst1|altsyncram:altsyncram_component|altsyncram_jkb1:auto_generated
+ 19. Source assignments for mc8051_rom:inst3|altsyncram:altsyncram_component|altsyncram_na81:auto_generated
+ 20. Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu
+ 21. Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|alumux:i_alumux
+ 22. Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|alucore:i_alucore
+ 23. Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|addsub_core:i_addsub_core
+ 24. Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|addsub_core:i_addsub_core|addsub_cy:\gen_greater_four:gen_addsub:4:gen_nibble_addsub:i_addsub_cy
+ 25. Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|addsub_core:i_addsub_core|addsub_ovcy:\gen_greater_four:gen_addsub:5:gen_last_addsub:i_addsub_ovcy
+ 26. Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|comb_mltplr:\gen_multiplier1:i_comb_mltplr
+ 27. Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|comb_divider:\gen_divider1:i_comb_divider
+ 28. Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|dcml_adjust:\gen_dcml_adj1:i_dcml_adjust
+ 29. Parameter Settings for User Entity Instance: pll12MHz:inst4|altpll:altpll_component
+ 30. Parameter Settings for User Entity Instance: mc8051_ramx:inst2|altsyncram:altsyncram_component
+ 31. Parameter Settings for User Entity Instance: mc8051_ram:inst1|altsyncram:altsyncram_component
+ 32. Parameter Settings for User Entity Instance: mc8051_rom:inst3|altsyncram:altsyncram_component
+ 33. Parameter Settings for Inferred Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|comb_mltplr:\gen_multiplier1:i_comb_mltplr|lpm_mult:Mult0
+ 34. altpll Parameter Settings by Entity Instance
+ 35. altsyncram Parameter Settings by Entity Instance
+ 36. lpm_mult Parameter Settings by Entity Instance
+ 37. Elapsed Time Per Partition
+ 38. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Wed Dec 02 14:00:05 2015           ;
+; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; embeded_system                                  ;
+; Top-level Entity Name              ; embeded_system                                  ;
+; Family                             ; Cyclone II                                      ;
+; Total logic elements               ; 3,844                                           ;
+;     Total combinational functions  ; 3,723                                           ;
+;     Dedicated logic registers      ; 515                                             ;
+; Total registers                    ; 515                                             ;
+; Total pins                         ; 42                                              ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 66,344                                          ;
+; Embedded Multiplier 9-bit elements ; 1                                               ;
+; Total PLLs                         ; 1                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP2C35F672C6       ;                    ;
+; Top-level entity name                                                      ; embeded_system     ; embeded_system     ;
+; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                          ;
++----------------------------------+-----------------+----------------------------------------+-----------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                                            ; Library ;
++----------------------------------+-----------------+----------------------------------------+-----------------------------------------------------------------------------------------+---------+
+; vhdl/mc8051_tmrctr_rtl.vhd       ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/mc8051_tmrctr_rtl.vhd    ;         ;
+; vhdl/mc8051_tmrctr_.vhd          ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/mc8051_tmrctr_.vhd       ;         ;
+; vhdl/mc8051_siu_rtl.vhd          ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/mc8051_siu_rtl.vhd       ;         ;
+; vhdl/mc8051_siu_.vhd             ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/mc8051_siu_.vhd          ;         ;
+; vhdl/mc8051_p.vhd                ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/mc8051_p.vhd             ;         ;
+; vhdl/mc8051_core_struc.vhd       ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/mc8051_core_struc.vhd    ;         ;
+; vhdl/mc8051_core.vhd             ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/mc8051_core.vhd          ;         ;
+; vhdl/mc8051_control_struc.vhd    ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/mc8051_control_struc.vhd ;         ;
+; vhdl/mc8051_control_.vhd         ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/mc8051_control_.vhd      ;         ;
+; vhdl/mc8051_alu_struc.vhd        ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/mc8051_alu_struc.vhd     ;         ;
+; vhdl/mc8051_alu_.vhd             ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/mc8051_alu_.vhd          ;         ;
+; vhdl/dcml_adjust_rtl.vhd         ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/dcml_adjust_rtl.vhd      ;         ;
+; vhdl/dcml_adjust_.vhd            ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/dcml_adjust_.vhd         ;         ;
+; vhdl/control_mem_rtl.vhd         ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/control_mem_rtl.vhd      ;         ;
+; vhdl/control_mem_.vhd            ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/control_mem_.vhd         ;         ;
+; vhdl/control_fsm_rtl.vhd         ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/control_fsm_rtl.vhd      ;         ;
+; vhdl/control_fsm_.vhd            ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/control_fsm_.vhd         ;         ;
+; vhdl/comb_mltplr_rtl.vhd         ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/comb_mltplr_rtl.vhd      ;         ;
+; vhdl/comb_mltplr_.vhd            ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/comb_mltplr_.vhd         ;         ;
+; vhdl/comb_divider_rtl.vhd        ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/comb_divider_rtl.vhd     ;         ;
+; vhdl/comb_divider_.vhd           ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/comb_divider_.vhd        ;         ;
+; vhdl/alumux_rtl.vhd              ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/alumux_rtl.vhd           ;         ;
+; vhdl/alumux_.vhd                 ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/alumux_.vhd              ;         ;
+; vhdl/alucore_rtl.vhd             ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/alucore_rtl.vhd          ;         ;
+; vhdl/alucore_.vhd                ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/alucore_.vhd             ;         ;
+; vhdl/addsub_ovcy_rtl.vhd         ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/addsub_ovcy_rtl.vhd      ;         ;
+; vhdl/addsub_ovcy_.vhd            ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/addsub_ovcy_.vhd         ;         ;
+; vhdl/addsub_cy_rtl.vhd           ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/addsub_cy_rtl.vhd        ;         ;
+; vhdl/addsub_cy_.vhd              ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/addsub_cy_.vhd           ;         ;
+; vhdl/addsub_core_struc.vhd       ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/addsub_core_struc.vhd    ;         ;
+; vhdl/addsub_core_.vhd            ; yes             ; User VHDL File                         ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/vhdl/addsub_core_.vhd         ;         ;
+; embeded_system.bdf               ; yes             ; User Block Diagram/Schematic File      ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/embeded_system.bdf            ;         ;
+; mc8051_rom.v                     ; yes             ; User Wizard-Generated File             ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/mc8051_rom.v                  ;         ;
+; mc8051_ram.v                     ; yes             ; User Wizard-Generated File             ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/mc8051_ram.v                  ;         ;
+; mc8051_ramx.v                    ; yes             ; User Wizard-Generated File             ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/mc8051_ramx.v                 ;         ;
+; pll12MHz.v                       ; yes             ; User Wizard-Generated File             ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/pll12MHz.v                    ;         ;
+; altpll.tdf                       ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altpll.tdf                            ;         ;
+; aglobal130.inc                   ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc                        ;         ;
+; stratix_pll.inc                  ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratix_pll.inc                       ;         ;
+; stratixii_pll.inc                ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratixii_pll.inc                     ;         ;
+; cycloneii_pll.inc                ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/cycloneii_pll.inc                     ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altsyncram.tdf                        ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/stratix_ram_block.inc                 ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mux.inc                           ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_decode.inc                        ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/a_rdenreg.inc                         ;         ;
+; altrom.inc                       ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altrom.inc                            ;         ;
+; altram.inc                       ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altram.inc                            ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altdpram.inc                          ;         ;
+; db/altsyncram_hua1.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/db/altsyncram_hua1.tdf        ;         ;
+; db/altsyncram_jkb1.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/db/altsyncram_jkb1.tdf        ;         ;
+; db/altsyncram_na81.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/db/altsyncram_na81.tdf        ;         ;
+; G:/Test_LCD.hex                  ; yes             ; Auto-Found Memory Initialization File  ; G:/Test_LCD.hex                                                                         ;         ;
+; lpm_mult.tdf                     ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_mult.tdf                          ;         ;
+; lpm_add_sub.inc                  ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_add_sub.inc                       ;         ;
+; multcore.inc                     ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/multcore.inc                          ;         ;
+; bypassff.inc                     ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/bypassff.inc                          ;         ;
+; altshift.inc                     ; yes             ; Megafunction                           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/altshift.inc                          ;         ;
+; db/mult_o5t.tdf                  ; yes             ; Auto-Generated Megafunction            ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/db/mult_o5t.tdf               ;         ;
++----------------------------------+-----------------+----------------------------------------+-----------------------------------------------------------------------------------------+---------+
+
+
++--------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                                ;
++---------------------------------------------+----------------------------------------------+
+; Resource                                    ; Usage                                        ;
++---------------------------------------------+----------------------------------------------+
+; Estimated Total logic elements              ; 3,844                                        ;
+;                                             ;                                              ;
+; Total combinational functions               ; 3723                                         ;
+; Logic element usage by number of LUT inputs ;                                              ;
+;     -- 4 input functions                    ; 2789                                         ;
+;     -- 3 input functions                    ; 653                                          ;
+;     -- <=2 input functions                  ; 281                                          ;
+;                                             ;                                              ;
+; Logic elements by mode                      ;                                              ;
+;     -- normal mode                          ; 3535                                         ;
+;     -- arithmetic mode                      ; 188                                          ;
+;                                             ;                                              ;
+; Total registers                             ; 515                                          ;
+;     -- Dedicated logic registers            ; 515                                          ;
+;     -- I/O registers                        ; 0                                            ;
+;                                             ;                                              ;
+; I/O pins                                    ; 42                                           ;
+; Total memory bits                           ; 66344                                        ;
+; Embedded Multiplier 9-bit elements          ; 1                                            ;
+; Total PLLs                                  ; 1                                            ;
+;     -- PLLs                                 ; 1                                            ;
+;                                             ;                                              ;
+; Maximum fan-out node                        ; pll12MHz:inst4|altpll:altpll_component|_clk0 ;
+; Maximum fan-out                             ; 539                                          ;
+; Total fan-out                               ; 16229                                        ;
+; Average fan-out                             ; 3.77                                         ;
++---------------------------------------------+----------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                             ;
++----------------------------------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                                                             ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                         ; Library Name ;
++----------------------------------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+; |embeded_system                                                                        ; 3723 (1)          ; 515 (0)      ; 66344       ; 1            ; 1       ; 0         ; 42   ; 0            ; |embeded_system                                                                                                                                             ; work         ;
+;    |mc8051_core:inst|                                                                  ; 3722 (0)          ; 515 (0)      ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_core:inst                                                                                                                            ; work         ;
+;       |mc8051_alu:i_mc8051_alu|                                                        ; 657 (0)           ; 0 (0)        ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu                                                                                                    ; work         ;
+;          |addsub_core:i_addsub_core|                                                   ; 30 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu|addsub_core:i_addsub_core                                                                          ; work         ;
+;             |addsub_cy:\gen_greater_four:gen_addsub:4:gen_nibble_addsub:i_addsub_cy|   ; 14 (14)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu|addsub_core:i_addsub_core|addsub_cy:\gen_greater_four:gen_addsub:4:gen_nibble_addsub:i_addsub_cy   ; work         ;
+;             |addsub_ovcy:\gen_greater_four:gen_addsub:5:gen_last_addsub:i_addsub_ovcy| ; 16 (16)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu|addsub_core:i_addsub_core|addsub_ovcy:\gen_greater_four:gen_addsub:5:gen_last_addsub:i_addsub_ovcy ; work         ;
+;          |alucore:i_alucore|                                                           ; 42 (42)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu|alucore:i_alucore                                                                                  ; work         ;
+;          |alumux:i_alumux|                                                             ; 427 (427)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu|alumux:i_alumux                                                                                    ; work         ;
+;          |comb_divider:\gen_divider1:i_comb_divider|                                   ; 146 (146)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu|comb_divider:\gen_divider1:i_comb_divider                                                          ; work         ;
+;          |comb_mltplr:\gen_multiplier1:i_comb_mltplr|                                  ; 0 (0)             ; 0 (0)        ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu|comb_mltplr:\gen_multiplier1:i_comb_mltplr                                                         ; work         ;
+;             |lpm_mult:Mult0|                                                           ; 0 (0)             ; 0 (0)        ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu|comb_mltplr:\gen_multiplier1:i_comb_mltplr|lpm_mult:Mult0                                          ; work         ;
+;                |mult_o5t:auto_generated|                                               ; 0 (0)             ; 0 (0)        ; 0           ; 1            ; 1       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu|comb_mltplr:\gen_multiplier1:i_comb_mltplr|lpm_mult:Mult0|mult_o5t:auto_generated                  ; work         ;
+;          |dcml_adjust:\gen_dcml_adj1:i_dcml_adjust|                                    ; 12 (12)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu|dcml_adjust:\gen_dcml_adj1:i_dcml_adjust                                                           ; work         ;
+;       |mc8051_control:i_mc8051_control|                                                ; 2739 (0)          ; 431 (0)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control                                                                                            ; work         ;
+;          |control_fsm:i_control_fsm|                                                   ; 531 (531)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_fsm:i_control_fsm                                                                  ; work         ;
+;          |control_mem:i_control_mem|                                                   ; 2208 (2208)       ; 431 (431)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem                                                                  ; work         ;
+;       |mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|                                      ; 185 (185)         ; 46 (46)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu                                                                                  ; work         ;
+;       |mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|                             ; 141 (141)         ; 38 (38)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr                                                                         ; work         ;
+;    |mc8051_ram:inst1|                                                                  ; 0 (0)             ; 0 (0)        ; 1024        ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_ram:inst1                                                                                                                            ; work         ;
+;       |altsyncram:altsyncram_component|                                                ; 0 (0)             ; 0 (0)        ; 1024        ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_ram:inst1|altsyncram:altsyncram_component                                                                                            ; work         ;
+;          |altsyncram_jkb1:auto_generated|                                              ; 0 (0)             ; 0 (0)        ; 1024        ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_ram:inst1|altsyncram:altsyncram_component|altsyncram_jkb1:auto_generated                                                             ; work         ;
+;    |mc8051_ramx:inst2|                                                                 ; 0 (0)             ; 0 (0)        ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_ramx:inst2                                                                                                                           ; work         ;
+;       |altsyncram:altsyncram_component|                                                ; 0 (0)             ; 0 (0)        ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_ramx:inst2|altsyncram:altsyncram_component                                                                                           ; work         ;
+;          |altsyncram_hua1:auto_generated|                                              ; 0 (0)             ; 0 (0)        ; 32768       ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_ramx:inst2|altsyncram:altsyncram_component|altsyncram_hua1:auto_generated                                                            ; work         ;
+;    |mc8051_rom:inst3|                                                                  ; 0 (0)             ; 0 (0)        ; 32552       ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_rom:inst3                                                                                                                            ; work         ;
+;       |altsyncram:altsyncram_component|                                                ; 0 (0)             ; 0 (0)        ; 32552       ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_rom:inst3|altsyncram:altsyncram_component                                                                                            ; work         ;
+;          |altsyncram_na81:auto_generated|                                              ; 0 (0)             ; 0 (0)        ; 32552       ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|mc8051_rom:inst3|altsyncram:altsyncram_component|altsyncram_na81:auto_generated                                                             ; work         ;
+;    |pll12MHz:inst4|                                                                    ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|pll12MHz:inst4                                                                                                                              ; work         ;
+;       |altpll:altpll_component|                                                        ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |embeded_system|pll12MHz:inst4|altpll:altpll_component                                                                                                      ; work         ;
++----------------------------------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                       ;
++---------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+-------+-----------------+
+; Name                                                                                        ; Type ; Mode        ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size  ; MIF             ;
++---------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+-------+-----------------+
+; mc8051_ram:inst1|altsyncram:altsyncram_component|altsyncram_jkb1:auto_generated|ALTSYNCRAM  ; AUTO ; Single Port ; 128          ; 8            ; --           ; --           ; 1024  ; None            ;
+; mc8051_ramx:inst2|altsyncram:altsyncram_component|altsyncram_hua1:auto_generated|ALTSYNCRAM ; AUTO ; Single Port ; 4096         ; 8            ; --           ; --           ; 32768 ; None            ;
+; mc8051_rom:inst3|altsyncram:altsyncram_component|altsyncram_na81:auto_generated|ALTSYNCRAM  ; AUTO ; ROM         ; 4069         ; 8            ; --           ; --           ; 32552 ; G:/Test_LCD.hex ;
++---------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+-------+-----------------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary        ;
++---------------------------------------+-------------+
+; Statistic                             ; Number Used ;
++---------------------------------------+-------------+
+; Simple Multipliers (9-bit)            ; 1           ;
+; Simple Multipliers (18-bit)           ; 0           ;
+; Embedded Multiplier Blocks            ; --          ;
+; Embedded Multiplier 9-bit elements    ; 1           ;
+; Signed Embedded Multipliers           ; 0           ;
+; Unsigned Embedded Multipliers         ; 1           ;
+; Mixed Sign Embedded Multipliers       ; 0           ;
+; Variable Sign Embedded Multipliers    ; 0           ;
+; Dedicated Input Shift Register Chains ; 0           ;
++---------------------------------------+-------------+
+Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                                                                                       ;
++--------+--------------+---------+--------------+--------------+-----------------------------------+-------------------------------------------------------------------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                   ; IP Include File                                                         ;
++--------+--------------+---------+--------------+--------------+-----------------------------------+-------------------------------------------------------------------------+
+; Altera ; RAM: 1-PORT  ; 12.1    ; N/A          ; N/A          ; |embeded_system|mc8051_ram:inst1  ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/mc8051_ram.v  ;
+; Altera ; RAM: 1-PORT  ; 12.1    ; N/A          ; N/A          ; |embeded_system|mc8051_ramx:inst2 ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/mc8051_ramx.v ;
+; Altera ; ROM: 1-PORT  ; 13.0    ; N/A          ; N/A          ; |embeded_system|mc8051_rom:inst3  ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/mc8051_rom.v  ;
+; Altera ; ALTPLL       ; 12.1    ; N/A          ; N/A          ; |embeded_system|pll12MHz:inst4    ; C:/Users/nanwenya/Desktop/OOOOOOO/hardfile/embeded_system/pll12MHz.v    ;
++--------+--------------+---------+--------------+--------------+-----------------------------------+-------------------------------------------------------------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------+
+; State Machine - |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|state ;
++---------------+-------------+-------------+-------------+-------------+------------------------------------------+
+; Name          ; state.EXEC3 ; state.EXEC2 ; state.EXEC1 ; state.FETCH ; state.STARTUP                            ;
++---------------+-------------+-------------+-------------+-------------+------------------------------------------+
+; state.STARTUP ; 0           ; 0           ; 0           ; 0           ; 0                                        ;
+; state.FETCH   ; 0           ; 0           ; 0           ; 1           ; 1                                        ;
+; state.EXEC1   ; 0           ; 0           ; 1           ; 0           ; 1                                        ;
+; state.EXEC2   ; 0           ; 1           ; 0           ; 0           ; 1                                        ;
+; state.EXEC3   ; 1           ; 0           ; 0           ; 0           ; 1                                        ;
++---------------+-------------+-------------+-------------+-------------+------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                                                                                             ;
++-----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+; Register name                                                                           ; Reason for Removal                                                                                   ;
++-----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_int0_sync[0]      ; Stuck at GND due to stuck port data_in                                                               ;
+; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_int1_sync[0]      ; Stuck at GND due to stuck port data_in                                                               ;
+; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_int0_sync[1]      ; Stuck at GND due to stuck port data_in                                                               ;
+; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_int1_sync[1]      ; Stuck at GND due to stuck port data_in                                                               ;
+; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_t0ff0             ; Stuck at GND due to stuck port data_in                                                               ;
+; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_t0ff1             ; Stuck at GND due to stuck port data_in                                                               ;
+; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_t0ff2             ; Stuck at GND due to stuck port data_in                                                               ;
+; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_t1ff0             ; Stuck at GND due to stuck port data_in                                                               ;
+; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_t1ff1             ; Stuck at GND due to stuck port data_in                                                               ;
+; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_t1ff2             ; Stuck at GND due to stuck port data_in                                                               ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p3[0]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p3[1]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p3[1]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p3[2]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p3[2]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p3[3]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p3[3]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p3[4]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p3[4]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p3[5]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p3[5]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p3[6]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p3[6]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p3[7]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p3[7]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p2[0]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p2[0]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p2[1]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p2[1]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p2[2]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p2[2]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p2[3]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p2[3]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p2[4]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p2[4]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p2[5]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p2[5]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p2[6]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p2[6]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p2[7]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p2[7]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p0[0]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p0[0]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p0[1]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p0[1]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p0[2]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p0[2]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p0[3]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p0[3]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p0[4]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p0[4]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p0[5]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p0[5]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p0[6]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p0[6]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p0[7]       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p0[7]      ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_int1_h1[0]  ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_int1_h1[0] ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_int0_h1[0]  ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_tf1_h1[0]  ; Merged with mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|s_ff0                         ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_tf1_h2[0]  ; Merged with mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|s_ff1                         ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_int1_h2[0] ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_int0_h2[0]  ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_int1_h3[0] ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_int0_h3[0]  ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_int0_h1[0] ; Merged with mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|state.STARTUP ;
+; mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|s_rxd_ff0                    ; Stuck at GND due to stuck port data_in                                                               ;
+; mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|s_rxd_ff1                    ; Stuck at GND due to stuck port data_in                                                               ;
+; mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|s_rxd_ff2                    ; Stuck at GND due to stuck port data_in                                                               ;
+; mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|s_det_ff0                    ; Stuck at GND due to stuck port data_in                                                               ;
+; mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|s_det_ff1                    ; Stuck at GND due to stuck port data_in                                                               ;
+; Total Number of Removed Registers = 45                                                  ;                                                                                                      ;
++-----------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                                                         ;
++------------------------------------------------------------------------------------+---------------------------+------------------------------------------------------------------------------------+
+; Register name                                                                      ; Reason for Removal        ; Registers Removed due to This Register                                             ;
++------------------------------------------------------------------------------------+---------------------------+------------------------------------------------------------------------------------+
+; mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|s_rxd_ff0               ; Stuck at GND              ; mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|s_rxd_ff1,              ;
+;                                                                                    ; due to stuck port data_in ; mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|s_rxd_ff2               ;
+; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_int0_sync[0] ; Stuck at GND              ; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_int0_sync[1] ;
+;                                                                                    ; due to stuck port data_in ;                                                                                    ;
+; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_int1_sync[0] ; Stuck at GND              ; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_int1_sync[1] ;
+;                                                                                    ; due to stuck port data_in ;                                                                                    ;
+; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_t0ff0        ; Stuck at GND              ; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_t0ff1        ;
+;                                                                                    ; due to stuck port data_in ;                                                                                    ;
+; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_t1ff0        ; Stuck at GND              ; mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_t1ff1        ;
+;                                                                                    ; due to stuck port data_in ;                                                                                    ;
++------------------------------------------------------------------------------------+---------------------------+------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 515   ;
+; Number of registers using Synchronous Clear  ; 173   ;
+; Number of registers using Synchronous Load   ; 43    ;
+; Number of registers using Asynchronous Clear ; 515   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 424   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++---------------------------------------------------------------------------------------------------+
+; Inverted Register Statistics                                                                      ;
++-----------------------------------------------------------------------------------------+---------+
+; Inverted Register                                                                       ; Fan out ;
++-----------------------------------------------------------------------------------------+---------+
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p0[7]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p0[6]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p0[5]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p0[4]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p0[3]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p0[2]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p0[1]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p0[0]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p1[7]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p1[6]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p1[5]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p1[4]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p1[3]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p1[2]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p1[1]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p1[0]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p2[7]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p2[6]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p2[5]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p2[4]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p2[3]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p2[2]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p2[1]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p2[0]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p3[7]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p3[6]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p3[5]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p3[4]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p3[3]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p3[2]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p3[1]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|p3[0]        ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p1[0]      ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|sp[0]        ; 6       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p1[6]      ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p1[7]      ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p1[1]      ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|sp[1]        ; 4       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p1[2]      ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|sp[2]        ; 4       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p1[3]      ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p1[4]      ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_p1[5]      ; 2       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_int0_h2[0] ; 3       ;
+; mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_int0_h3[0] ; 2       ;
+; Total number of inverted registers = 45                                                 ;         ;
++-----------------------------------------------------------------------------------------+---------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------+
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_intlow       ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_r0_b3[5]     ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_r1_b2[7]     ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_r1_b3[4]     ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_help16[5]    ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|s_recv_state[2]                ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|s_tran_state[3]                ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|pcon[2]        ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|dpl[6]         ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|dph[4]         ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|tsel[3]        ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|ssel[3]        ;
+; 16:1               ; 3 bits    ; 30 LEs        ; 12 LEs               ; 18 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_help[7]      ;
+; 16:1               ; 3 bits    ; 30 LEs        ; 9 LEs                ; 21 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_help[0]      ;
+; 16:1               ; 2 bits    ; 20 LEs        ; 12 LEs               ; 8 LEs                  ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_help[3]      ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_r0_b0[5]     ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 0 LEs                ; 24 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|tmod[0][5]     ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_r1_b0[2]     ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 0 LEs                ; 32 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_r0_b1[3]     ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 6 LEs                ; 18 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|s_txpre_count[5]               ;
+; 6:1                ; 6 bits    ; 24 LEs        ; 6 LEs                ; 18 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|s_rxpre_count[5]               ;
+; 8:1                ; 8 bits    ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_r1_b1[2]     ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 0 LEs                ; 8 LEs                  ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|s_rxd_ff2                      ;
+; 9:1                ; 8 bits    ; 48 LEs        ; 0 LEs                ; 48 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_r0_b2[6]     ;
+; 12:1               ; 4 bits    ; 32 LEs        ; 12 LEs               ; 20 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|pc[13]         ;
+; 11:1               ; 8 bits    ; 56 LEs        ; 0 LEs                ; 56 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|s_reload[0][4] ;
+; 13:1               ; 5 bits    ; 40 LEs        ; 10 LEs               ; 30 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|sp[5]          ;
+; 15:1               ; 7 bits    ; 70 LEs        ; 7 LEs                ; 63 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|s_recv_buf[5]                  ;
+; 16:1               ; 8 bits    ; 80 LEs        ; 16 LEs               ; 64 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_counth1[7]          ;
+; 20:1               ; 8 bits    ; 104 LEs       ; 16 LEs               ; 88 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_countl1[6]          ;
+; 21:1               ; 8 bits    ; 112 LEs       ; 16 LEs               ; 96 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_counth0[3]          ;
+; 24:1               ; 8 bits    ; 128 LEs       ; 16 LEs               ; 112 LEs                ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr|s_countl0[0]          ;
+; 24:1               ; 7 bits    ; 112 LEs       ; 7 LEs                ; 105 LEs                ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu|s_recv_sh[6]                   ;
+; 13:1               ; 3 bits    ; 24 LEs        ; 6 LEs                ; 18 LEs                 ; Yes        ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|sp[2]          ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|command_o[7]   ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|command_o[7]   ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|command_o[7]   ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_fsm:i_control_fsm|wrx_mux_o      ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_fsm:i_control_fsm|ext0isrh_en_o  ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|Mux73          ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_fsm:i_control_fsm|s_pc_inc_en    ;
+; 8:1                ; 8 bits    ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|Mux83          ;
+; 16:1               ; 4 bits    ; 40 LEs        ; 32 LEs               ; 8 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|Mux47          ;
+; 16:1               ; 3 bits    ; 30 LEs        ; 24 LEs               ; 6 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|Mux52          ;
+; 16:1               ; 3 bits    ; 30 LEs        ; 27 LEs               ; 3 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|Mux57          ;
+; 16:1               ; 3 bits    ; 30 LEs        ; 27 LEs               ; 3 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|Mux61          ;
+; 16:1               ; 2 bits    ; 20 LEs        ; 18 LEs               ; 2 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|Mux58          ;
+; 7:1                ; 7 bits    ; 28 LEs        ; 21 LEs               ; 7 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu|alumux:i_alumux|Mux73                            ;
+; 10:1               ; 8 bits    ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; No         ; |embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu|alumux:i_alumux|Mux64                            ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_fsm:i_control_fsm|s_adr_mux      ;
+; 13:1               ; 3 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|Mux118         ;
+; 13:1               ; 3 bits    ; 24 LEs        ; 12 LEs               ; 12 LEs                 ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|Mux126         ;
+; 11:1               ; 7 bits    ; 49 LEs        ; 28 LEs               ; 21 LEs                 ; No         ; |embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu|alumux:i_alumux|Mux13                            ;
+; 12:1               ; 5 bits    ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|Mux123         ;
+; 15:1               ; 8 bits    ; 80 LEs        ; 40 LEs               ; 40 LEs                 ; No         ; |embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu|alumux:i_alumux|Mux11                            ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|Add6           ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|Add6           ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|Add6           ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|Add6           ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|Add6           ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|Add6           ;
+; 3:1                ; 5 bits    ; 10 LEs        ; 5 LEs                ; 5 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|Add6           ;
+; 18:1               ; 4 bits    ; 48 LEs        ; 36 LEs               ; 12 LEs                 ; No         ; |embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu|alumux:i_alumux|Mux84                            ;
+; 18:1               ; 2 bits    ; 24 LEs        ; 18 LEs               ; 6 LEs                  ; No         ; |embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu|alumux:i_alumux|Mux80                            ;
+; 114:1              ; 3 bits    ; 228 LEs       ; 102 LEs              ; 126 LEs                ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|reg_data_o[4]  ;
+; 118:1              ; 5 bits    ; 390 LEs       ; 175 LEs              ; 215 LEs                ; No         ; |embeded_system|mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem|reg_data_o[2]  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------+
+; Source assignments for mc8051_ramx:inst2|altsyncram:altsyncram_component|altsyncram_hua1:auto_generated ;
++---------------------------------+--------------------+------+-------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                        ;
++---------------------------------+--------------------+------+-------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                         ;
++---------------------------------+--------------------+------+-------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------+
+; Source assignments for mc8051_ram:inst1|altsyncram:altsyncram_component|altsyncram_jkb1:auto_generated ;
++---------------------------------+--------------------+------+------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                       ;
++---------------------------------+--------------------+------+------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                        ;
++---------------------------------+--------------------+------+------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------+
+; Source assignments for mc8051_rom:inst3|altsyncram:altsyncram_component|altsyncram_na81:auto_generated ;
++---------------------------------+--------------------+------+------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                       ;
++---------------------------------+--------------------+------+------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                        ;
++---------------------------------+--------------------+------+------------------------------------------+
+
+
++---------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu ;
++----------------+-------+--------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                         ;
++----------------+-------+--------------------------------------------------------------+
+; dwidth         ; 8     ; Signed Integer                                               ;
++----------------+-------+--------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|alumux:i_alumux ;
++----------------+-------+------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                         ;
++----------------+-------+------------------------------------------------------------------------------+
+; dwidth         ; 8     ; Signed Integer                                                               ;
++----------------+-------+------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|alucore:i_alucore ;
++----------------+-------+--------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                           ;
++----------------+-------+--------------------------------------------------------------------------------+
+; dwidth         ; 8     ; Signed Integer                                                                 ;
++----------------+-------+--------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|addsub_core:i_addsub_core ;
++----------------+-------+----------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                   ;
++----------------+-------+----------------------------------------------------------------------------------------+
+; dwidth         ; 8     ; Signed Integer                                                                         ;
++----------------+-------+----------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|addsub_core:i_addsub_core|addsub_cy:\gen_greater_four:gen_addsub:4:gen_nibble_addsub:i_addsub_cy ;
++----------------+-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                                                                          ;
++----------------+-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; dwidth         ; 4     ; Signed Integer                                                                                                                                                ;
++----------------+-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|addsub_core:i_addsub_core|addsub_ovcy:\gen_greater_four:gen_addsub:5:gen_last_addsub:i_addsub_ovcy ;
++----------------+-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                                                                            ;
++----------------+-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; dwidth         ; 4     ; Signed Integer                                                                                                                                                  ;
++----------------+-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|comb_mltplr:\gen_multiplier1:i_comb_mltplr ;
++----------------+-------+---------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                    ;
++----------------+-------+---------------------------------------------------------------------------------------------------------+
+; dwidth         ; 8     ; Signed Integer                                                                                          ;
++----------------+-------+---------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|comb_divider:\gen_divider1:i_comb_divider ;
++----------------+-------+--------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                   ;
++----------------+-------+--------------------------------------------------------------------------------------------------------+
+; dwidth         ; 8     ; Signed Integer                                                                                         ;
++----------------+-------+--------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|dcml_adjust:\gen_dcml_adj1:i_dcml_adjust ;
++----------------+-------+-------------------------------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                                                  ;
++----------------+-------+-------------------------------------------------------------------------------------------------------+
+; dwidth         ; 8     ; Signed Integer                                                                                        ;
++----------------+-------+-------------------------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: pll12MHz:inst4|altpll:altpll_component ;
++-------------------------------+----------------------------+------------------------+
+; Parameter Name                ; Value                      ; Type                   ;
++-------------------------------+----------------------------+------------------------+
+; OPERATION_MODE                ; NORMAL                     ; Untyped                ;
+; PLL_TYPE                      ; AUTO                       ; Untyped                ;
+; LPM_HINT                      ; CBX_MODULE_PREFIX=pll12MHz ; Untyped                ;
+; QUALIFY_CONF_DONE             ; OFF                        ; Untyped                ;
+; COMPENSATE_CLOCK              ; CLK0                       ; Untyped                ;
+; SCAN_CHAIN                    ; LONG                       ; Untyped                ;
+; PRIMARY_CLOCK                 ; INCLK0                     ; Untyped                ;
+; INCLK0_INPUT_FREQUENCY        ; 20000                      ; Signed Integer         ;
+; INCLK1_INPUT_FREQUENCY        ; 0                          ; Untyped                ;
+; GATE_LOCK_SIGNAL              ; NO                         ; Untyped                ;
+; GATE_LOCK_COUNTER             ; 0                          ; Untyped                ;
+; LOCK_HIGH                     ; 1                          ; Untyped                ;
+; LOCK_LOW                      ; 1                          ; Untyped                ;
+; VALID_LOCK_MULTIPLIER         ; 1                          ; Untyped                ;
+; INVALID_LOCK_MULTIPLIER       ; 5                          ; Untyped                ;
+; SWITCH_OVER_ON_LOSSCLK        ; OFF                        ; Untyped                ;
+; SWITCH_OVER_ON_GATED_LOCK     ; OFF                        ; Untyped                ;
+; ENABLE_SWITCH_OVER_COUNTER    ; OFF                        ; Untyped                ;
+; SKIP_VCO                      ; OFF                        ; Untyped                ;
+; SWITCH_OVER_COUNTER           ; 0                          ; Untyped                ;
+; SWITCH_OVER_TYPE              ; AUTO                       ; Untyped                ;
+; FEEDBACK_SOURCE               ; EXTCLK0                    ; Untyped                ;
+; BANDWIDTH                     ; 0                          ; Untyped                ;
+; BANDWIDTH_TYPE                ; AUTO                       ; Untyped                ;
+; SPREAD_FREQUENCY              ; 0                          ; Untyped                ;
+; DOWN_SPREAD                   ; 0                          ; Untyped                ;
+; SELF_RESET_ON_GATED_LOSS_LOCK ; OFF                        ; Untyped                ;
+; SELF_RESET_ON_LOSS_LOCK       ; OFF                        ; Untyped                ;
+; CLK9_MULTIPLY_BY              ; 0                          ; Untyped                ;
+; CLK8_MULTIPLY_BY              ; 0                          ; Untyped                ;
+; CLK7_MULTIPLY_BY              ; 0                          ; Untyped                ;
+; CLK6_MULTIPLY_BY              ; 0                          ; Untyped                ;
+; CLK5_MULTIPLY_BY              ; 1                          ; Untyped                ;
+; CLK4_MULTIPLY_BY              ; 1                          ; Untyped                ;
+; CLK3_MULTIPLY_BY              ; 1                          ; Untyped                ;
+; CLK2_MULTIPLY_BY              ; 1                          ; Untyped                ;
+; CLK1_MULTIPLY_BY              ; 1                          ; Untyped                ;
+; CLK0_MULTIPLY_BY              ; 6                          ; Signed Integer         ;
+; CLK9_DIVIDE_BY                ; 0                          ; Untyped                ;
+; CLK8_DIVIDE_BY                ; 0                          ; Untyped                ;
+; CLK7_DIVIDE_BY                ; 0                          ; Untyped                ;
+; CLK6_DIVIDE_BY                ; 0                          ; Untyped                ;
+; CLK5_DIVIDE_BY                ; 1                          ; Untyped                ;
+; CLK4_DIVIDE_BY                ; 1                          ; Untyped                ;
+; CLK3_DIVIDE_BY                ; 1                          ; Untyped                ;
+; CLK2_DIVIDE_BY                ; 1                          ; Untyped                ;
+; CLK1_DIVIDE_BY                ; 1                          ; Untyped                ;
+; CLK0_DIVIDE_BY                ; 25                         ; Signed Integer         ;
+; CLK9_PHASE_SHIFT              ; 0                          ; Untyped                ;
+; CLK8_PHASE_SHIFT              ; 0                          ; Untyped                ;
+; CLK7_PHASE_SHIFT              ; 0                          ; Untyped                ;
+; CLK6_PHASE_SHIFT              ; 0                          ; Untyped                ;
+; CLK5_PHASE_SHIFT              ; 0                          ; Untyped                ;
+; CLK4_PHASE_SHIFT              ; 0                          ; Untyped                ;
+; CLK3_PHASE_SHIFT              ; 0                          ; Untyped                ;
+; CLK2_PHASE_SHIFT              ; 0                          ; Untyped                ;
+; CLK1_PHASE_SHIFT              ; 0                          ; Untyped                ;
+; CLK0_PHASE_SHIFT              ; 0                          ; Untyped                ;
+; CLK5_TIME_DELAY               ; 0                          ; Untyped                ;
+; CLK4_TIME_DELAY               ; 0                          ; Untyped                ;
+; CLK3_TIME_DELAY               ; 0                          ; Untyped                ;
+; CLK2_TIME_DELAY               ; 0                          ; Untyped                ;
+; CLK1_TIME_DELAY               ; 0                          ; Untyped                ;
+; CLK0_TIME_DELAY               ; 0                          ; Untyped                ;
+; CLK9_DUTY_CYCLE               ; 50                         ; Untyped                ;
+; CLK8_DUTY_CYCLE               ; 50                         ; Untyped                ;
+; CLK7_DUTY_CYCLE               ; 50                         ; Untyped                ;
+; CLK6_DUTY_CYCLE               ; 50                         ; Untyped                ;
+; CLK5_DUTY_CYCLE               ; 50                         ; Untyped                ;
+; CLK4_DUTY_CYCLE               ; 50                         ; Untyped                ;
+; CLK3_DUTY_CYCLE               ; 50                         ; Untyped                ;
+; CLK2_DUTY_CYCLE               ; 50                         ; Untyped                ;
+; CLK1_DUTY_CYCLE               ; 50                         ; Untyped                ;
+; CLK0_DUTY_CYCLE               ; 50                         ; Signed Integer         ;
+; CLK9_USE_EVEN_COUNTER_MODE    ; OFF                        ; Untyped                ;
+; CLK8_USE_EVEN_COUNTER_MODE    ; OFF                        ; Untyped                ;
+; CLK7_USE_EVEN_COUNTER_MODE    ; OFF                        ; Untyped                ;
+; CLK6_USE_EVEN_COUNTER_MODE    ; OFF                        ; Untyped                ;
+; CLK5_USE_EVEN_COUNTER_MODE    ; OFF                        ; Untyped                ;
+; CLK4_USE_EVEN_COUNTER_MODE    ; OFF                        ; Untyped                ;
+; CLK3_USE_EVEN_COUNTER_MODE    ; OFF                        ; Untyped                ;
+; CLK2_USE_EVEN_COUNTER_MODE    ; OFF                        ; Untyped                ;
+; CLK1_USE_EVEN_COUNTER_MODE    ; OFF                        ; Untyped                ;
+; CLK0_USE_EVEN_COUNTER_MODE    ; OFF                        ; Untyped                ;
+; CLK9_USE_EVEN_COUNTER_VALUE   ; OFF                        ; Untyped                ;
+; CLK8_USE_EVEN_COUNTER_VALUE   ; OFF                        ; Untyped                ;
+; CLK7_USE_EVEN_COUNTER_VALUE   ; OFF                        ; Untyped                ;
+; CLK6_USE_EVEN_COUNTER_VALUE   ; OFF                        ; Untyped                ;
+; CLK5_USE_EVEN_COUNTER_VALUE   ; OFF                        ; Untyped                ;
+; CLK4_USE_EVEN_COUNTER_VALUE   ; OFF                        ; Untyped                ;
+; CLK3_USE_EVEN_COUNTER_VALUE   ; OFF                        ; Untyped                ;
+; CLK2_USE_EVEN_COUNTER_VALUE   ; OFF                        ; Untyped                ;
+; CLK1_USE_EVEN_COUNTER_VALUE   ; OFF                        ; Untyped                ;
+; CLK0_USE_EVEN_COUNTER_VALUE   ; OFF                        ; Untyped                ;
+; LOCK_WINDOW_UI                ;  0.05                      ; Untyped                ;
+; LOCK_WINDOW_UI_BITS           ; UNUSED                     ; Untyped                ;
+; VCO_RANGE_DETECTOR_LOW_BITS   ; UNUSED                     ; Untyped                ;
+; VCO_RANGE_DETECTOR_HIGH_BITS  ; UNUSED                     ; Untyped                ;
+; DPA_MULTIPLY_BY               ; 0                          ; Untyped                ;
+; DPA_DIVIDE_BY                 ; 1                          ; Untyped                ;
+; DPA_DIVIDER                   ; 0                          ; Untyped                ;
+; EXTCLK3_MULTIPLY_BY           ; 1                          ; Untyped                ;
+; EXTCLK2_MULTIPLY_BY           ; 1                          ; Untyped                ;
+; EXTCLK1_MULTIPLY_BY           ; 1                          ; Untyped                ;
+; EXTCLK0_MULTIPLY_BY           ; 1                          ; Untyped                ;
+; EXTCLK3_DIVIDE_BY             ; 1                          ; Untyped                ;
+; EXTCLK2_DIVIDE_BY             ; 1                          ; Untyped                ;
+; EXTCLK1_DIVIDE_BY             ; 1                          ; Untyped                ;
+; EXTCLK0_DIVIDE_BY             ; 1                          ; Untyped                ;
+; EXTCLK3_PHASE_SHIFT           ; 0                          ; Untyped                ;
+; EXTCLK2_PHASE_SHIFT           ; 0                          ; Untyped                ;
+; EXTCLK1_PHASE_SHIFT           ; 0                          ; Untyped                ;
+; EXTCLK0_PHASE_SHIFT           ; 0                          ; Untyped                ;
+; EXTCLK3_TIME_DELAY            ; 0                          ; Untyped                ;
+; EXTCLK2_TIME_DELAY            ; 0                          ; Untyped                ;
+; EXTCLK1_TIME_DELAY            ; 0                          ; Untyped                ;
+; EXTCLK0_TIME_DELAY            ; 0                          ; Untyped                ;
+; EXTCLK3_DUTY_CYCLE            ; 50                         ; Untyped                ;
+; EXTCLK2_DUTY_CYCLE            ; 50                         ; Untyped                ;
+; EXTCLK1_DUTY_CYCLE            ; 50                         ; Untyped                ;
+; EXTCLK0_DUTY_CYCLE            ; 50                         ; Untyped                ;
+; VCO_MULTIPLY_BY               ; 0                          ; Untyped                ;
+; VCO_DIVIDE_BY                 ; 0                          ; Untyped                ;
+; SCLKOUT0_PHASE_SHIFT          ; 0                          ; Untyped                ;
+; SCLKOUT1_PHASE_SHIFT          ; 0                          ; Untyped                ;
+; VCO_MIN                       ; 0                          ; Untyped                ;
+; VCO_MAX                       ; 0                          ; Untyped                ;
+; VCO_CENTER                    ; 0                          ; Untyped                ;
+; PFD_MIN                       ; 0                          ; Untyped                ;
+; PFD_MAX                       ; 0                          ; Untyped                ;
+; M_INITIAL                     ; 0                          ; Untyped                ;
+; M                             ; 0                          ; Untyped                ;
+; N                             ; 1                          ; Untyped                ;
+; M2                            ; 1                          ; Untyped                ;
+; N2                            ; 1                          ; Untyped                ;
+; SS                            ; 1                          ; Untyped                ;
+; C0_HIGH                       ; 0                          ; Untyped                ;
+; C1_HIGH                       ; 0                          ; Untyped                ;
+; C2_HIGH                       ; 0                          ; Untyped                ;
+; C3_HIGH                       ; 0                          ; Untyped                ;
+; C4_HIGH                       ; 0                          ; Untyped                ;
+; C5_HIGH                       ; 0                          ; Untyped                ;
+; C6_HIGH                       ; 0                          ; Untyped                ;
+; C7_HIGH                       ; 0                          ; Untyped                ;
+; C8_HIGH                       ; 0                          ; Untyped                ;
+; C9_HIGH                       ; 0                          ; Untyped                ;
+; C0_LOW                        ; 0                          ; Untyped                ;
+; C1_LOW                        ; 0                          ; Untyped                ;
+; C2_LOW                        ; 0                          ; Untyped                ;
+; C3_LOW                        ; 0                          ; Untyped                ;
+; C4_LOW                        ; 0                          ; Untyped                ;
+; C5_LOW                        ; 0                          ; Untyped                ;
+; C6_LOW                        ; 0                          ; Untyped                ;
+; C7_LOW                        ; 0                          ; Untyped                ;
+; C8_LOW                        ; 0                          ; Untyped                ;
+; C9_LOW                        ; 0                          ; Untyped                ;
+; C0_INITIAL                    ; 0                          ; Untyped                ;
+; C1_INITIAL                    ; 0                          ; Untyped                ;
+; C2_INITIAL                    ; 0                          ; Untyped                ;
+; C3_INITIAL                    ; 0                          ; Untyped                ;
+; C4_INITIAL                    ; 0                          ; Untyped                ;
+; C5_INITIAL                    ; 0                          ; Untyped                ;
+; C6_INITIAL                    ; 0                          ; Untyped                ;
+; C7_INITIAL                    ; 0                          ; Untyped                ;
+; C8_INITIAL                    ; 0                          ; Untyped                ;
+; C9_INITIAL                    ; 0                          ; Untyped                ;
+; C0_MODE                       ; BYPASS                     ; Untyped                ;
+; C1_MODE                       ; BYPASS                     ; Untyped                ;
+; C2_MODE                       ; BYPASS                     ; Untyped                ;
+; C3_MODE                       ; BYPASS                     ; Untyped                ;
+; C4_MODE                       ; BYPASS                     ; Untyped                ;
+; C5_MODE                       ; BYPASS                     ; Untyped                ;
+; C6_MODE                       ; BYPASS                     ; Untyped                ;
+; C7_MODE                       ; BYPASS                     ; Untyped                ;
+; C8_MODE                       ; BYPASS                     ; Untyped                ;
+; C9_MODE                       ; BYPASS                     ; Untyped                ;
+; C0_PH                         ; 0                          ; Untyped                ;
+; C1_PH                         ; 0                          ; Untyped                ;
+; C2_PH                         ; 0                          ; Untyped                ;
+; C3_PH                         ; 0                          ; Untyped                ;
+; C4_PH                         ; 0                          ; Untyped                ;
+; C5_PH                         ; 0                          ; Untyped                ;
+; C6_PH                         ; 0                          ; Untyped                ;
+; C7_PH                         ; 0                          ; Untyped                ;
+; C8_PH                         ; 0                          ; Untyped                ;
+; C9_PH                         ; 0                          ; Untyped                ;
+; L0_HIGH                       ; 1                          ; Untyped                ;
+; L1_HIGH                       ; 1                          ; Untyped                ;
+; G0_HIGH                       ; 1                          ; Untyped                ;
+; G1_HIGH                       ; 1                          ; Untyped                ;
+; G2_HIGH                       ; 1                          ; Untyped                ;
+; G3_HIGH                       ; 1                          ; Untyped                ;
+; E0_HIGH                       ; 1                          ; Untyped                ;
+; E1_HIGH                       ; 1                          ; Untyped                ;
+; E2_HIGH                       ; 1                          ; Untyped                ;
+; E3_HIGH                       ; 1                          ; Untyped                ;
+; L0_LOW                        ; 1                          ; Untyped                ;
+; L1_LOW                        ; 1                          ; Untyped                ;
+; G0_LOW                        ; 1                          ; Untyped                ;
+; G1_LOW                        ; 1                          ; Untyped                ;
+; G2_LOW                        ; 1                          ; Untyped                ;
+; G3_LOW                        ; 1                          ; Untyped                ;
+; E0_LOW                        ; 1                          ; Untyped                ;
+; E1_LOW                        ; 1                          ; Untyped                ;
+; E2_LOW                        ; 1                          ; Untyped                ;
+; E3_LOW                        ; 1                          ; Untyped                ;
+; L0_INITIAL                    ; 1                          ; Untyped                ;
+; L1_INITIAL                    ; 1                          ; Untyped                ;
+; G0_INITIAL                    ; 1                          ; Untyped                ;
+; G1_INITIAL                    ; 1                          ; Untyped                ;
+; G2_INITIAL                    ; 1                          ; Untyped                ;
+; G3_INITIAL                    ; 1                          ; Untyped                ;
+; E0_INITIAL                    ; 1                          ; Untyped                ;
+; E1_INITIAL                    ; 1                          ; Untyped                ;
+; E2_INITIAL                    ; 1                          ; Untyped                ;
+; E3_INITIAL                    ; 1                          ; Untyped                ;
+; L0_MODE                       ; BYPASS                     ; Untyped                ;
+; L1_MODE                       ; BYPASS                     ; Untyped                ;
+; G0_MODE                       ; BYPASS                     ; Untyped                ;
+; G1_MODE                       ; BYPASS                     ; Untyped                ;
+; G2_MODE                       ; BYPASS                     ; Untyped                ;
+; G3_MODE                       ; BYPASS                     ; Untyped                ;
+; E0_MODE                       ; BYPASS                     ; Untyped                ;
+; E1_MODE                       ; BYPASS                     ; Untyped                ;
+; E2_MODE                       ; BYPASS                     ; Untyped                ;
+; E3_MODE                       ; BYPASS                     ; Untyped                ;
+; L0_PH                         ; 0                          ; Untyped                ;
+; L1_PH                         ; 0                          ; Untyped                ;
+; G0_PH                         ; 0                          ; Untyped                ;
+; G1_PH                         ; 0                          ; Untyped                ;
+; G2_PH                         ; 0                          ; Untyped                ;
+; G3_PH                         ; 0                          ; Untyped                ;
+; E0_PH                         ; 0                          ; Untyped                ;
+; E1_PH                         ; 0                          ; Untyped                ;
+; E2_PH                         ; 0                          ; Untyped                ;
+; E3_PH                         ; 0                          ; Untyped                ;
+; M_PH                          ; 0                          ; Untyped                ;
+; C1_USE_CASC_IN                ; OFF                        ; Untyped                ;
+; C2_USE_CASC_IN                ; OFF                        ; Untyped                ;
+; C3_USE_CASC_IN                ; OFF                        ; Untyped                ;
+; C4_USE_CASC_IN                ; OFF                        ; Untyped                ;
+; C5_USE_CASC_IN                ; OFF                        ; Untyped                ;
+; C6_USE_CASC_IN                ; OFF                        ; Untyped                ;
+; C7_USE_CASC_IN                ; OFF                        ; Untyped                ;
+; C8_USE_CASC_IN                ; OFF                        ; Untyped                ;
+; C9_USE_CASC_IN                ; OFF                        ; Untyped                ;
+; CLK0_COUNTER                  ; G0                         ; Untyped                ;
+; CLK1_COUNTER                  ; G0                         ; Untyped                ;
+; CLK2_COUNTER                  ; G0                         ; Untyped                ;
+; CLK3_COUNTER                  ; G0                         ; Untyped                ;
+; CLK4_COUNTER                  ; G0                         ; Untyped                ;
+; CLK5_COUNTER                  ; G0                         ; Untyped                ;
+; CLK6_COUNTER                  ; E0                         ; Untyped                ;
+; CLK7_COUNTER                  ; E1                         ; Untyped                ;
+; CLK8_COUNTER                  ; E2                         ; Untyped                ;
+; CLK9_COUNTER                  ; E3                         ; Untyped                ;
+; L0_TIME_DELAY                 ; 0                          ; Untyped                ;
+; L1_TIME_DELAY                 ; 0                          ; Untyped                ;
+; G0_TIME_DELAY                 ; 0                          ; Untyped                ;
+; G1_TIME_DELAY                 ; 0                          ; Untyped                ;
+; G2_TIME_DELAY                 ; 0                          ; Untyped                ;
+; G3_TIME_DELAY                 ; 0                          ; Untyped                ;
+; E0_TIME_DELAY                 ; 0                          ; Untyped                ;
+; E1_TIME_DELAY                 ; 0                          ; Untyped                ;
+; E2_TIME_DELAY                 ; 0                          ; Untyped                ;
+; E3_TIME_DELAY                 ; 0                          ; Untyped                ;
+; M_TIME_DELAY                  ; 0                          ; Untyped                ;
+; N_TIME_DELAY                  ; 0                          ; Untyped                ;
+; EXTCLK3_COUNTER               ; E3                         ; Untyped                ;
+; EXTCLK2_COUNTER               ; E2                         ; Untyped                ;
+; EXTCLK1_COUNTER               ; E1                         ; Untyped                ;
+; EXTCLK0_COUNTER               ; E0                         ; Untyped                ;
+; ENABLE0_COUNTER               ; L0                         ; Untyped                ;
+; ENABLE1_COUNTER               ; L0                         ; Untyped                ;
+; CHARGE_PUMP_CURRENT           ; 2                          ; Untyped                ;
+; LOOP_FILTER_R                 ;  1.000000                  ; Untyped                ;
+; LOOP_FILTER_C                 ; 5                          ; Untyped                ;
+; CHARGE_PUMP_CURRENT_BITS      ; 9999                       ; Untyped                ;
+; LOOP_FILTER_R_BITS            ; 9999                       ; Untyped                ;
+; LOOP_FILTER_C_BITS            ; 9999                       ; Untyped                ;
+; VCO_POST_SCALE                ; 0                          ; Untyped                ;
+; CLK2_OUTPUT_FREQUENCY         ; 0                          ; Untyped                ;
+; CLK1_OUTPUT_FREQUENCY         ; 0                          ; Untyped                ;
+; CLK0_OUTPUT_FREQUENCY         ; 0                          ; Untyped                ;
+; INTENDED_DEVICE_FAMILY        ; Cyclone II                 ; Untyped                ;
+; PORT_CLKENA0                  ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLKENA1                  ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLKENA2                  ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLKENA3                  ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLKENA4                  ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLKENA5                  ; PORT_UNUSED                ; Untyped                ;
+; PORT_EXTCLKENA0               ; PORT_CONNECTIVITY          ; Untyped                ;
+; PORT_EXTCLKENA1               ; PORT_CONNECTIVITY          ; Untyped                ;
+; PORT_EXTCLKENA2               ; PORT_CONNECTIVITY          ; Untyped                ;
+; PORT_EXTCLKENA3               ; PORT_CONNECTIVITY          ; Untyped                ;
+; PORT_EXTCLK0                  ; PORT_UNUSED                ; Untyped                ;
+; PORT_EXTCLK1                  ; PORT_UNUSED                ; Untyped                ;
+; PORT_EXTCLK2                  ; PORT_UNUSED                ; Untyped                ;
+; PORT_EXTCLK3                  ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLKBAD0                  ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLKBAD1                  ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLK0                     ; PORT_USED                  ; Untyped                ;
+; PORT_CLK1                     ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLK2                     ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLK3                     ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLK4                     ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLK5                     ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLK6                     ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLK7                     ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLK8                     ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLK9                     ; PORT_UNUSED                ; Untyped                ;
+; PORT_SCANDATA                 ; PORT_UNUSED                ; Untyped                ;
+; PORT_SCANDATAOUT              ; PORT_UNUSED                ; Untyped                ;
+; PORT_SCANDONE                 ; PORT_UNUSED                ; Untyped                ;
+; PORT_SCLKOUT1                 ; PORT_CONNECTIVITY          ; Untyped                ;
+; PORT_SCLKOUT0                 ; PORT_CONNECTIVITY          ; Untyped                ;
+; PORT_ACTIVECLOCK              ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLKLOSS                  ; PORT_UNUSED                ; Untyped                ;
+; PORT_INCLK1                   ; PORT_UNUSED                ; Untyped                ;
+; PORT_INCLK0                   ; PORT_USED                  ; Untyped                ;
+; PORT_FBIN                     ; PORT_UNUSED                ; Untyped                ;
+; PORT_PLLENA                   ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLKSWITCH                ; PORT_UNUSED                ; Untyped                ;
+; PORT_ARESET                   ; PORT_UNUSED                ; Untyped                ;
+; PORT_PFDENA                   ; PORT_UNUSED                ; Untyped                ;
+; PORT_SCANCLK                  ; PORT_UNUSED                ; Untyped                ;
+; PORT_SCANACLR                 ; PORT_UNUSED                ; Untyped                ;
+; PORT_SCANREAD                 ; PORT_UNUSED                ; Untyped                ;
+; PORT_SCANWRITE                ; PORT_UNUSED                ; Untyped                ;
+; PORT_ENABLE0                  ; PORT_CONNECTIVITY          ; Untyped                ;
+; PORT_ENABLE1                  ; PORT_CONNECTIVITY          ; Untyped                ;
+; PORT_LOCKED                   ; PORT_UNUSED                ; Untyped                ;
+; PORT_CONFIGUPDATE             ; PORT_UNUSED                ; Untyped                ;
+; PORT_FBOUT                    ; PORT_CONNECTIVITY          ; Untyped                ;
+; PORT_PHASEDONE                ; PORT_UNUSED                ; Untyped                ;
+; PORT_PHASESTEP                ; PORT_UNUSED                ; Untyped                ;
+; PORT_PHASEUPDOWN              ; PORT_UNUSED                ; Untyped                ;
+; PORT_SCANCLKENA               ; PORT_UNUSED                ; Untyped                ;
+; PORT_PHASECOUNTERSELECT       ; PORT_UNUSED                ; Untyped                ;
+; PORT_VCOOVERRANGE             ; PORT_CONNECTIVITY          ; Untyped                ;
+; PORT_VCOUNDERRANGE            ; PORT_CONNECTIVITY          ; Untyped                ;
+; M_TEST_SOURCE                 ; 5                          ; Untyped                ;
+; C0_TEST_SOURCE                ; 5                          ; Untyped                ;
+; C1_TEST_SOURCE                ; 5                          ; Untyped                ;
+; C2_TEST_SOURCE                ; 5                          ; Untyped                ;
+; C3_TEST_SOURCE                ; 5                          ; Untyped                ;
+; C4_TEST_SOURCE                ; 5                          ; Untyped                ;
+; C5_TEST_SOURCE                ; 5                          ; Untyped                ;
+; C6_TEST_SOURCE                ; 5                          ; Untyped                ;
+; C7_TEST_SOURCE                ; 5                          ; Untyped                ;
+; C8_TEST_SOURCE                ; 5                          ; Untyped                ;
+; C9_TEST_SOURCE                ; 5                          ; Untyped                ;
+; CBXI_PARAMETER                ; NOTHING                    ; Untyped                ;
+; VCO_FREQUENCY_CONTROL         ; AUTO                       ; Untyped                ;
+; VCO_PHASE_SHIFT_STEP          ; 0                          ; Untyped                ;
+; WIDTH_CLOCK                   ; 6                          ; Untyped                ;
+; WIDTH_PHASECOUNTERSELECT      ; 4                          ; Untyped                ;
+; USING_FBMIMICBIDIR_PORT       ; OFF                        ; Untyped                ;
+; DEVICE_FAMILY                 ; Cyclone II                 ; Untyped                ;
+; SCAN_CHAIN_MIF_FILE           ; UNUSED                     ; Untyped                ;
+; SIM_GATE_LOCK_DEVICE_BEHAVIOR ; OFF                        ; Untyped                ;
+; AUTO_CARRY_CHAINS             ; ON                         ; AUTO_CARRY             ;
+; IGNORE_CARRY_BUFFERS          ; OFF                        ; IGNORE_CARRY           ;
+; AUTO_CASCADE_CHAINS           ; ON                         ; AUTO_CASCADE           ;
+; IGNORE_CASCADE_BUFFERS        ; OFF                        ; IGNORE_CASCADE         ;
++-------------------------------+----------------------------+------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mc8051_ramx:inst2|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+------------------------------------+
+; Parameter Name                     ; Value                ; Type                               ;
++------------------------------------+----------------------+------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                            ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                         ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                       ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                       ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                     ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                            ;
+; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped                            ;
+; WIDTH_A                            ; 8                    ; Signed Integer                     ;
+; WIDTHAD_A                          ; 12                   ; Signed Integer                     ;
+; NUMWORDS_A                         ; 4096                 ; Signed Integer                     ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                            ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                            ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                            ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                            ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                            ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                            ;
+; WIDTH_B                            ; 1                    ; Untyped                            ;
+; WIDTHAD_B                          ; 1                    ; Untyped                            ;
+; NUMWORDS_B                         ; 1                    ; Untyped                            ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                            ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                            ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                            ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                            ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                            ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                            ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                            ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                            ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                            ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                            ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                            ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                            ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                     ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                            ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                            ;
+; BYTE_SIZE                          ; 8                    ; Untyped                            ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                            ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                            ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                            ;
+; INIT_FILE                          ; UNUSED               ; Untyped                            ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                            ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                            ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                            ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                            ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                            ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                            ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                            ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                            ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                            ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                            ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                            ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                            ;
+; CBXI_PARAMETER                     ; altsyncram_hua1      ; Untyped                            ;
++------------------------------------+----------------------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mc8051_ram:inst1|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+-----------------------------------+
+; Parameter Name                     ; Value                ; Type                              ;
++------------------------------------+----------------------+-----------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                           ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                        ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                      ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                      ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                    ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                           ;
+; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped                           ;
+; WIDTH_A                            ; 8                    ; Signed Integer                    ;
+; WIDTHAD_A                          ; 7                    ; Signed Integer                    ;
+; NUMWORDS_A                         ; 128                  ; Signed Integer                    ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                           ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                           ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                           ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                           ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                           ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                           ;
+; WIDTH_B                            ; 1                    ; Untyped                           ;
+; WIDTHAD_B                          ; 1                    ; Untyped                           ;
+; NUMWORDS_B                         ; 1                    ; Untyped                           ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                           ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                           ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                           ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                           ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                           ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                           ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                           ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                           ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                           ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                           ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                           ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                           ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                    ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                           ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                           ;
+; BYTE_SIZE                          ; 8                    ; Untyped                           ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                           ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                           ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                           ;
+; INIT_FILE                          ; UNUSED               ; Untyped                           ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                           ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                           ;
+; CLOCK_ENABLE_INPUT_A               ; NORMAL               ; Untyped                           ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                           ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                           ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                           ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                           ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                           ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                           ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                           ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                           ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                           ;
+; CBXI_PARAMETER                     ; altsyncram_jkb1      ; Untyped                           ;
++------------------------------------+----------------------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: mc8051_rom:inst3|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+-----------------------------------+
+; Parameter Name                     ; Value                ; Type                              ;
++------------------------------------+----------------------+-----------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                           ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                        ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                      ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                      ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                    ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                           ;
+; OPERATION_MODE                     ; ROM                  ; Untyped                           ;
+; WIDTH_A                            ; 8                    ; Signed Integer                    ;
+; WIDTHAD_A                          ; 12                   ; Signed Integer                    ;
+; NUMWORDS_A                         ; 4069                 ; Signed Integer                    ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                           ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                           ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                           ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                           ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                           ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                           ;
+; WIDTH_B                            ; 1                    ; Untyped                           ;
+; WIDTHAD_B                          ; 1                    ; Untyped                           ;
+; NUMWORDS_B                         ; 1                    ; Untyped                           ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                           ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                           ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                           ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                           ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                           ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                           ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                           ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                           ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                           ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                           ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                           ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                           ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                    ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                           ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                           ;
+; BYTE_SIZE                          ; 8                    ; Untyped                           ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                           ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                           ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                           ;
+; INIT_FILE                          ; G:/Test_LCD.hex      ; Untyped                           ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                           ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                           ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                           ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                           ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                           ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                           ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                           ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                           ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                           ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                           ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                           ;
+; DEVICE_FAMILY                      ; Cyclone II           ; Untyped                           ;
+; CBXI_PARAMETER                     ; altsyncram_na81      ; Untyped                           ;
++------------------------------------+----------------------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: mc8051_core:inst|mc8051_alu:i_mc8051_alu|comb_mltplr:\gen_multiplier1:i_comb_mltplr|lpm_mult:Mult0 ;
++------------------------------------------------+------------+---------------------------------------------------------------------------------------+
+; Parameter Name                                 ; Value      ; Type                                                                                  ;
++------------------------------------------------+------------+---------------------------------------------------------------------------------------+
+; AUTO_CARRY_CHAINS                              ; ON         ; AUTO_CARRY                                                                            ;
+; IGNORE_CARRY_BUFFERS                           ; OFF        ; IGNORE_CARRY                                                                          ;
+; AUTO_CASCADE_CHAINS                            ; ON         ; AUTO_CASCADE                                                                          ;
+; IGNORE_CASCADE_BUFFERS                         ; OFF        ; IGNORE_CASCADE                                                                        ;
+; LPM_WIDTHA                                     ; 8          ; Untyped                                                                               ;
+; LPM_WIDTHB                                     ; 8          ; Untyped                                                                               ;
+; LPM_WIDTHP                                     ; 16         ; Untyped                                                                               ;
+; LPM_WIDTHR                                     ; 16         ; Untyped                                                                               ;
+; LPM_WIDTHS                                     ; 1          ; Untyped                                                                               ;
+; LPM_REPRESENTATION                             ; UNSIGNED   ; Untyped                                                                               ;
+; LPM_PIPELINE                                   ; 0          ; Untyped                                                                               ;
+; LATENCY                                        ; 0          ; Untyped                                                                               ;
+; INPUT_A_IS_CONSTANT                            ; NO         ; Untyped                                                                               ;
+; INPUT_B_IS_CONSTANT                            ; NO         ; Untyped                                                                               ;
+; USE_EAB                                        ; OFF        ; Untyped                                                                               ;
+; MAXIMIZE_SPEED                                 ; 5          ; Untyped                                                                               ;
+; DEVICE_FAMILY                                  ; Cyclone II ; Untyped                                                                               ;
+; CARRY_CHAIN                                    ; MANUAL     ; Untyped                                                                               ;
+; APEX20K_TECHNOLOGY_MAPPER                      ; LUT        ; TECH_MAPPER_APEX20K                                                                   ;
+; DEDICATED_MULTIPLIER_CIRCUITRY                 ; AUTO       ; Untyped                                                                               ;
+; DEDICATED_MULTIPLIER_MIN_INPUT_WIDTH_FOR_AUTO  ; 0          ; Untyped                                                                               ;
+; DEDICATED_MULTIPLIER_MIN_OUTPUT_WIDTH_FOR_AUTO ; 0          ; Untyped                                                                               ;
+; CBXI_PARAMETER                                 ; mult_o5t   ; Untyped                                                                               ;
+; INPUT_A_FIXED_VALUE                            ; Bx         ; Untyped                                                                               ;
+; INPUT_B_FIXED_VALUE                            ; Bx         ; Untyped                                                                               ;
+; USE_AHDL_IMPLEMENTATION                        ; OFF        ; Untyped                                                                               ;
++------------------------------------------------+------------+---------------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------+
+; altpll Parameter Settings by Entity Instance                           ;
++-------------------------------+----------------------------------------+
+; Name                          ; Value                                  ;
++-------------------------------+----------------------------------------+
+; Number of entity instances    ; 1                                      ;
+; Entity Instance               ; pll12MHz:inst4|altpll:altpll_component ;
+;     -- OPERATION_MODE         ; NORMAL                                 ;
+;     -- PLL_TYPE               ; AUTO                                   ;
+;     -- PRIMARY_CLOCK          ; INCLK0                                 ;
+;     -- INCLK0_INPUT_FREQUENCY ; 20000                                  ;
+;     -- INCLK1_INPUT_FREQUENCY ; 0                                      ;
+;     -- VCO_MULTIPLY_BY        ; 0                                      ;
+;     -- VCO_DIVIDE_BY          ; 0                                      ;
++-------------------------------+----------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                              ;
++-------------------------------------------+---------------------------------------------------+
+; Name                                      ; Value                                             ;
++-------------------------------------------+---------------------------------------------------+
+; Number of entity instances                ; 3                                                 ;
+; Entity Instance                           ; mc8051_ramx:inst2|altsyncram:altsyncram_component ;
+;     -- OPERATION_MODE                     ; SINGLE_PORT                                       ;
+;     -- WIDTH_A                            ; 8                                                 ;
+;     -- NUMWORDS_A                         ; 4096                                              ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                      ;
+;     -- WIDTH_B                            ; 1                                                 ;
+;     -- NUMWORDS_B                         ; 1                                                 ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                            ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                      ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                              ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                         ;
+; Entity Instance                           ; mc8051_ram:inst1|altsyncram:altsyncram_component  ;
+;     -- OPERATION_MODE                     ; SINGLE_PORT                                       ;
+;     -- WIDTH_A                            ; 8                                                 ;
+;     -- NUMWORDS_A                         ; 128                                               ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                      ;
+;     -- WIDTH_B                            ; 1                                                 ;
+;     -- NUMWORDS_B                         ; 1                                                 ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                            ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                      ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                              ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                         ;
+; Entity Instance                           ; mc8051_rom:inst3|altsyncram:altsyncram_component  ;
+;     -- OPERATION_MODE                     ; ROM                                               ;
+;     -- WIDTH_A                            ; 8                                                 ;
+;     -- NUMWORDS_A                         ; 4069                                              ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                      ;
+;     -- WIDTH_B                            ; 1                                                 ;
+;     -- NUMWORDS_B                         ; 1                                                 ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                            ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                      ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                              ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                         ;
++-------------------------------------------+---------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; lpm_mult Parameter Settings by Entity Instance                                                                                             ;
++---------------------------------------+----------------------------------------------------------------------------------------------------+
+; Name                                  ; Value                                                                                              ;
++---------------------------------------+----------------------------------------------------------------------------------------------------+
+; Number of entity instances            ; 1                                                                                                  ;
+; Entity Instance                       ; mc8051_core:inst|mc8051_alu:i_mc8051_alu|comb_mltplr:\gen_multiplier1:i_comb_mltplr|lpm_mult:Mult0 ;
+;     -- LPM_WIDTHA                     ; 8                                                                                                  ;
+;     -- LPM_WIDTHB                     ; 8                                                                                                  ;
+;     -- LPM_WIDTHP                     ; 16                                                                                                 ;
+;     -- LPM_REPRESENTATION             ; UNSIGNED                                                                                           ;
+;     -- INPUT_A_IS_CONSTANT            ; NO                                                                                                 ;
+;     -- INPUT_B_IS_CONSTANT            ; NO                                                                                                 ;
+;     -- USE_EAB                        ; OFF                                                                                                ;
+;     -- DEDICATED_MULTIPLIER_CIRCUITRY ; AUTO                                                                                               ;
+;     -- INPUT_A_FIXED_VALUE            ; Bx                                                                                                 ;
+;     -- INPUT_B_FIXED_VALUE            ; Bx                                                                                                 ;
++---------------------------------------+----------------------------------------------------------------------------------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:01:24     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 32-bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Wed Dec 02 13:58:36 2015
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off embeded_system -c embeded_system
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 1 design units, including 0 entities, in source file vhdl/mc8051_tmrctr_rtl.vhd
+    Info (12022): Found design unit 1: mc8051_tmrctr-rtl
+Info (12021): Found 1 design units, including 1 entities, in source file vhdl/mc8051_tmrctr_.vhd
+    Info (12023): Found entity 1: mc8051_tmrctr
+Info (12021): Found 1 design units, including 0 entities, in source file vhdl/mc8051_siu_rtl.vhd
+    Info (12022): Found design unit 1: mc8051_siu-rtl
+Info (12021): Found 1 design units, including 1 entities, in source file vhdl/mc8051_siu_.vhd
+    Info (12023): Found entity 1: mc8051_siu
+Info (12021): Found 1 design units, including 0 entities, in source file vhdl/mc8051_p.vhd
+    Info (12022): Found design unit 1: mc8051_p
+Info (12021): Found 1 design units, including 0 entities, in source file vhdl/mc8051_core_struc.vhd
+    Info (12022): Found design unit 1: mc8051_core-struc
+Info (12021): Found 1 design units, including 1 entities, in source file vhdl/mc8051_core.vhd
+    Info (12023): Found entity 1: mc8051_core
+Info (12021): Found 1 design units, including 0 entities, in source file vhdl/mc8051_control_struc.vhd
+    Info (12022): Found design unit 1: mc8051_control-struc
+Info (12021): Found 1 design units, including 1 entities, in source file vhdl/mc8051_control_.vhd
+    Info (12023): Found entity 1: mc8051_control
+Info (12021): Found 1 design units, including 0 entities, in source file vhdl/mc8051_alu_struc.vhd
+    Info (12022): Found design unit 1: mc8051_alu-struc
+Info (12021): Found 1 design units, including 1 entities, in source file vhdl/mc8051_alu_.vhd
+    Info (12023): Found entity 1: mc8051_alu
+Info (12021): Found 1 design units, including 0 entities, in source file vhdl/dcml_adjust_rtl.vhd
+    Info (12022): Found design unit 1: dcml_adjust-rtl
+Info (12021): Found 1 design units, including 1 entities, in source file vhdl/dcml_adjust_.vhd
+    Info (12023): Found entity 1: dcml_adjust
+Info (12021): Found 1 design units, including 0 entities, in source file vhdl/control_mem_rtl.vhd
+    Info (12022): Found design unit 1: control_mem-rtl
+Info (12021): Found 1 design units, including 1 entities, in source file vhdl/control_mem_.vhd
+    Info (12023): Found entity 1: control_mem
+Info (12021): Found 1 design units, including 0 entities, in source file vhdl/control_fsm_rtl.vhd
+    Info (12022): Found design unit 1: control_fsm-rtl
+Info (12021): Found 1 design units, including 1 entities, in source file vhdl/control_fsm_.vhd
+    Info (12023): Found entity 1: control_fsm
+Info (12021): Found 1 design units, including 0 entities, in source file vhdl/comb_mltplr_rtl.vhd
+    Info (12022): Found design unit 1: comb_mltplr-rtl
+Info (12021): Found 1 design units, including 1 entities, in source file vhdl/comb_mltplr_.vhd
+    Info (12023): Found entity 1: comb_mltplr
+Info (12021): Found 1 design units, including 0 entities, in source file vhdl/comb_divider_rtl.vhd
+    Info (12022): Found design unit 1: comb_divider-rtl
+Info (12021): Found 1 design units, including 1 entities, in source file vhdl/comb_divider_.vhd
+    Info (12023): Found entity 1: comb_divider
+Info (12021): Found 1 design units, including 0 entities, in source file vhdl/alumux_rtl.vhd
+    Info (12022): Found design unit 1: alumux-rtl
+Info (12021): Found 1 design units, including 1 entities, in source file vhdl/alumux_.vhd
+    Info (12023): Found entity 1: alumux
+Info (12021): Found 1 design units, including 0 entities, in source file vhdl/alucore_rtl.vhd
+    Info (12022): Found design unit 1: alucore-rtl
+Info (12021): Found 1 design units, including 1 entities, in source file vhdl/alucore_.vhd
+    Info (12023): Found entity 1: alucore
+Info (12021): Found 1 design units, including 0 entities, in source file vhdl/addsub_ovcy_rtl.vhd
+    Info (12022): Found design unit 1: addsub_ovcy-rtl
+Info (12021): Found 1 design units, including 1 entities, in source file vhdl/addsub_ovcy_.vhd
+    Info (12023): Found entity 1: addsub_ovcy
+Info (12021): Found 1 design units, including 0 entities, in source file vhdl/addsub_cy_rtl.vhd
+    Info (12022): Found design unit 1: addsub_cy-rtl
+Info (12021): Found 1 design units, including 1 entities, in source file vhdl/addsub_cy_.vhd
+    Info (12023): Found entity 1: addsub_cy
+Info (12021): Found 1 design units, including 0 entities, in source file vhdl/addsub_core_struc.vhd
+    Info (12022): Found design unit 1: addsub_core-struc
+Info (12021): Found 1 design units, including 1 entities, in source file vhdl/addsub_core_.vhd
+    Info (12023): Found entity 1: addsub_core
+Info (12021): Found 1 design units, including 1 entities, in source file embeded_system.bdf
+    Info (12023): Found entity 1: embeded_system
+Info (12021): Found 1 design units, including 1 entities, in source file mc8051_rom.v
+    Info (12023): Found entity 1: mc8051_rom
+Info (12021): Found 1 design units, including 1 entities, in source file mc8051_ram.v
+    Info (12023): Found entity 1: mc8051_ram
+Info (12021): Found 1 design units, including 1 entities, in source file mc8051_ramx.v
+    Info (12023): Found entity 1: mc8051_ramx
+Info (12021): Found 1 design units, including 1 entities, in source file pll12mhz.v
+    Info (12023): Found entity 1: pll12MHz
+Info (12127): Elaborating entity "embeded_system" for the top level hierarchy
+Info (12128): Elaborating entity "mc8051_core" for hierarchy "mc8051_core:inst"
+Info (12128): Elaborating entity "mc8051_control" for hierarchy "mc8051_core:inst|mc8051_control:i_mc8051_control"
+Info (12128): Elaborating entity "control_fsm" for hierarchy "mc8051_core:inst|mc8051_control:i_mc8051_control|control_fsm:i_control_fsm"
+Info (12128): Elaborating entity "control_mem" for hierarchy "mc8051_core:inst|mc8051_control:i_mc8051_control|control_mem:i_control_mem"
+Info (12128): Elaborating entity "mc8051_alu" for hierarchy "mc8051_core:inst|mc8051_alu:i_mc8051_alu"
+Info (12128): Elaborating entity "alumux" for hierarchy "mc8051_core:inst|mc8051_alu:i_mc8051_alu|alumux:i_alumux"
+Warning (10037): Verilog HDL or VHDL warning at alumux_rtl.vhd(368): conditional expression evaluates to a constant
+Warning (10037): Verilog HDL or VHDL warning at alumux_rtl.vhd(381): conditional expression evaluates to a constant
+Warning (10037): Verilog HDL or VHDL warning at alumux_rtl.vhd(397): conditional expression evaluates to a constant
+Info (12128): Elaborating entity "alucore" for hierarchy "mc8051_core:inst|mc8051_alu:i_mc8051_alu|alucore:i_alucore"
+Info (12128): Elaborating entity "addsub_core" for hierarchy "mc8051_core:inst|mc8051_alu:i_mc8051_alu|addsub_core:i_addsub_core"
+Info (12128): Elaborating entity "addsub_cy" for hierarchy "mc8051_core:inst|mc8051_alu:i_mc8051_alu|addsub_core:i_addsub_core|addsub_cy:\gen_greater_four:gen_addsub:4:gen_nibble_addsub:i_addsub_cy"
+Info (12128): Elaborating entity "addsub_ovcy" for hierarchy "mc8051_core:inst|mc8051_alu:i_mc8051_alu|addsub_core:i_addsub_core|addsub_ovcy:\gen_greater_four:gen_addsub:5:gen_last_addsub:i_addsub_ovcy"
+Info (12128): Elaborating entity "comb_mltplr" for hierarchy "mc8051_core:inst|mc8051_alu:i_mc8051_alu|comb_mltplr:\gen_multiplier1:i_comb_mltplr"
+Info (12128): Elaborating entity "comb_divider" for hierarchy "mc8051_core:inst|mc8051_alu:i_mc8051_alu|comb_divider:\gen_divider1:i_comb_divider"
+Info (12128): Elaborating entity "dcml_adjust" for hierarchy "mc8051_core:inst|mc8051_alu:i_mc8051_alu|dcml_adjust:\gen_dcml_adj1:i_dcml_adjust"
+Info (12128): Elaborating entity "mc8051_siu" for hierarchy "mc8051_core:inst|mc8051_siu:\gen_mc8051_siu:0:i_mc8051_siu"
+Info (12128): Elaborating entity "mc8051_tmrctr" for hierarchy "mc8051_core:inst|mc8051_tmrctr:\gen_mc8051_tmrctr:0:i_mc8051_tmrctr"
+Info (12128): Elaborating entity "pll12MHz" for hierarchy "pll12MHz:inst4"
+Info (12128): Elaborating entity "altpll" for hierarchy "pll12MHz:inst4|altpll:altpll_component"
+Info (12130): Elaborated megafunction instantiation "pll12MHz:inst4|altpll:altpll_component"
+Info (12133): Instantiated megafunction "pll12MHz:inst4|altpll:altpll_component" with the following parameter:
+    Info (12134): Parameter "clk0_divide_by" = "25"
+    Info (12134): Parameter "clk0_duty_cycle" = "50"
+    Info (12134): Parameter "clk0_multiply_by" = "6"
+    Info (12134): Parameter "clk0_phase_shift" = "0"
+    Info (12134): Parameter "compensate_clock" = "CLK0"
+    Info (12134): Parameter "inclk0_input_frequency" = "20000"
+    Info (12134): Parameter "intended_device_family" = "Cyclone II"
+    Info (12134): Parameter "lpm_hint" = "CBX_MODULE_PREFIX=pll12MHz"
+    Info (12134): Parameter "lpm_type" = "altpll"
+    Info (12134): Parameter "operation_mode" = "NORMAL"
+    Info (12134): Parameter "port_activeclock" = "PORT_UNUSED"
+    Info (12134): Parameter "port_areset" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkbad0" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkbad1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkloss" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkswitch" = "PORT_UNUSED"
+    Info (12134): Parameter "port_configupdate" = "PORT_UNUSED"
+    Info (12134): Parameter "port_fbin" = "PORT_UNUSED"
+    Info (12134): Parameter "port_inclk0" = "PORT_USED"
+    Info (12134): Parameter "port_inclk1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_locked" = "PORT_UNUSED"
+    Info (12134): Parameter "port_pfdena" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phasecounterselect" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phasedone" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phasestep" = "PORT_UNUSED"
+    Info (12134): Parameter "port_phaseupdown" = "PORT_UNUSED"
+    Info (12134): Parameter "port_pllena" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanaclr" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanclk" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanclkena" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scandata" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scandataout" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scandone" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanread" = "PORT_UNUSED"
+    Info (12134): Parameter "port_scanwrite" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk0" = "PORT_USED"
+    Info (12134): Parameter "port_clk1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk2" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk3" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk4" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk5" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena0" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena2" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena3" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena4" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clkena5" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk0" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk2" = "PORT_UNUSED"
+    Info (12134): Parameter "port_extclk3" = "PORT_UNUSED"
+Info (12128): Elaborating entity "mc8051_ramx" for hierarchy "mc8051_ramx:inst2"
+Info (12128): Elaborating entity "altsyncram" for hierarchy "mc8051_ramx:inst2|altsyncram:altsyncram_component"
+Info (12130): Elaborated megafunction instantiation "mc8051_ramx:inst2|altsyncram:altsyncram_component"
+Info (12133): Instantiated megafunction "mc8051_ramx:inst2|altsyncram:altsyncram_component" with the following parameter:
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "intended_device_family" = "Cyclone II"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "4096"
+    Info (12134): Parameter "operation_mode" = "SINGLE_PORT"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
+    Info (12134): Parameter "widthad_a" = "12"
+    Info (12134): Parameter "width_a" = "8"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_hua1.tdf
+    Info (12023): Found entity 1: altsyncram_hua1
+Info (12128): Elaborating entity "altsyncram_hua1" for hierarchy "mc8051_ramx:inst2|altsyncram:altsyncram_component|altsyncram_hua1:auto_generated"
+Info (12128): Elaborating entity "mc8051_ram" for hierarchy "mc8051_ram:inst1"
+Info (12128): Elaborating entity "altsyncram" for hierarchy "mc8051_ram:inst1|altsyncram:altsyncram_component"
+Info (12130): Elaborated megafunction instantiation "mc8051_ram:inst1|altsyncram:altsyncram_component"
+Info (12133): Instantiated megafunction "mc8051_ram:inst1|altsyncram:altsyncram_component" with the following parameter:
+    Info (12134): Parameter "clock_enable_input_a" = "NORMAL"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "intended_device_family" = "Cyclone II"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "128"
+    Info (12134): Parameter "operation_mode" = "SINGLE_PORT"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
+    Info (12134): Parameter "widthad_a" = "7"
+    Info (12134): Parameter "width_a" = "8"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_jkb1.tdf
+    Info (12023): Found entity 1: altsyncram_jkb1
+Info (12128): Elaborating entity "altsyncram_jkb1" for hierarchy "mc8051_ram:inst1|altsyncram:altsyncram_component|altsyncram_jkb1:auto_generated"
+Info (12128): Elaborating entity "mc8051_rom" for hierarchy "mc8051_rom:inst3"
+Info (12128): Elaborating entity "altsyncram" for hierarchy "mc8051_rom:inst3|altsyncram:altsyncram_component"
+Info (12130): Elaborated megafunction instantiation "mc8051_rom:inst3|altsyncram:altsyncram_component"
+Info (12133): Instantiated megafunction "mc8051_rom:inst3|altsyncram:altsyncram_component" with the following parameter:
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "G:/Test_LCD.hex"
+    Info (12134): Parameter "intended_device_family" = "Cyclone II"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "4069"
+    Info (12134): Parameter "operation_mode" = "ROM"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
+    Info (12134): Parameter "widthad_a" = "12"
+    Info (12134): Parameter "width_a" = "8"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_na81.tdf
+    Info (12023): Found entity 1: altsyncram_na81
+Info (12128): Elaborating entity "altsyncram_na81" for hierarchy "mc8051_rom:inst3|altsyncram:altsyncram_component|altsyncram_na81:auto_generated"
+Warning (113007): Byte addressed memory initialization file "Test_LCD.hex" was read in the word-addressed format
+Warning (113015): Width of data items in "Test_LCD.hex" is greater than the memory width. Wrapping data items to subsequent addresses. Found 18 warnings, reporting 10
+    Warning (113009): Data at line (1) of memory initialization file "Test_LCD.hex" is too wide to fit in one memory word. Wrapping data to subsequent addresses.
+    Warning (113009): Data at line (2) of memory initialization file "Test_LCD.hex" is too wide to fit in one memory word. Wrapping data to subsequent addresses.
+    Warning (113009): Data at line (4) of memory initialization file "Test_LCD.hex" is too wide to fit in one memory word. Wrapping data to subsequent addresses.
+    Warning (113009): Data at line (5) of memory initialization file "Test_LCD.hex" is too wide to fit in one memory word. Wrapping data to subsequent addresses.
+    Warning (113009): Data at line (6) of memory initialization file "Test_LCD.hex" is too wide to fit in one memory word. Wrapping data to subsequent addresses.
+    Warning (113009): Data at line (7) of memory initialization file "Test_LCD.hex" is too wide to fit in one memory word. Wrapping data to subsequent addresses.
+    Warning (113009): Data at line (8) of memory initialization file "Test_LCD.hex" is too wide to fit in one memory word. Wrapping data to subsequent addresses.
+    Warning (113009): Data at line (9) of memory initialization file "Test_LCD.hex" is too wide to fit in one memory word. Wrapping data to subsequent addresses.
+    Warning (113009): Data at line (10) of memory initialization file "Test_LCD.hex" is too wide to fit in one memory word. Wrapping data to subsequent addresses.
+    Warning (113009): Data at line (11) of memory initialization file "Test_LCD.hex" is too wide to fit in one memory word. Wrapping data to subsequent addresses.
+Critical Warning (127005): Memory depth (4069) in the design file differs from memory depth (197) in the Memory Initialization File "G:/Test_LCD.hex" -- setting initial value for remaining addresses to 0
+Info (278001): Inferred 1 megafunctions from design logic
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "mc8051_core:inst|mc8051_alu:i_mc8051_alu|comb_mltplr:\gen_multiplier1:i_comb_mltplr|Mult0"
+Info (12130): Elaborated megafunction instantiation "mc8051_core:inst|mc8051_alu:i_mc8051_alu|comb_mltplr:\gen_multiplier1:i_comb_mltplr|lpm_mult:Mult0"
+Info (12133): Instantiated megafunction "mc8051_core:inst|mc8051_alu:i_mc8051_alu|comb_mltplr:\gen_multiplier1:i_comb_mltplr|lpm_mult:Mult0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHA" = "8"
+    Info (12134): Parameter "LPM_WIDTHB" = "8"
+    Info (12134): Parameter "LPM_WIDTHP" = "16"
+    Info (12134): Parameter "LPM_WIDTHR" = "16"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_o5t.tdf
+    Info (12023): Found entity 1: mult_o5t
+Info (13000): Registers with preset signals will power-up high
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 3950 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 10 input pins
+    Info (21059): Implemented 32 output pins
+    Info (21061): Implemented 3882 logic cells
+    Info (21064): Implemented 24 RAM segments
+    Info (21065): Implemented 1 PLLs
+    Info (21062): Implemented 1 DSP elements
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 17 warnings
+    Info: Peak virtual memory: 411 megabytes
+    Info: Processing ended: Wed Dec 02 14:00:05 2015
+    Info: Elapsed time: 00:01:29
+    Info: Total CPU time (on all processors): 00:01:28
+
+

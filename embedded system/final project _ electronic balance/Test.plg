@@ -1,0 +1,30 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\nanwenya\Desktop\Test\Test.uvproj
+Project File Date:  11/23/2015
+
+<h2>Output:</h2>
+Rebuild target 'Target 1'
+compiling 0_01_12g.c...
+compiling EEPROM.c...
+compiling HX711.c...
+compiling LCD1602.c...
+compiling MAIN.C...
+compiling Sch51.c...
+compiling weight.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BYTE_READ?EEPROM
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SECTORERASE?EEPROM
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_BYTE_WRITE?EEPROM
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?GET_MAOPI?WEIGHT
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SCAN_KEY?WEIGHT
+Program Size: data=60.1 xdata=0 code=2214
+"Test" - 0 Error(s), 5 Warning(s).

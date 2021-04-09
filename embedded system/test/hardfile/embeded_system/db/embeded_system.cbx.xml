@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="embeded_system">
+		<CBX_INST_ENTRY INSTANCE_NAME="|embeded_system|mc8051_core:inst|mc8051_alu:i_mc8051_alu|comb_mltplr:\gen_multiplier1:i_comb_mltplr|lpm_mult:Mult0" CBX_FILE_NAME="mult_o5t.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|embeded_system|mc8051_ram:inst1|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_jkb1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|embeded_system|mc8051_ramx:inst2|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_hua1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|embeded_system|mc8051_rom:inst3|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_na81.tdf"/>
+	</PROJECT>
+</LOG_ROOT>

@@ -1,0 +1,40 @@
+C51 COMPILER V9.50a   EX                                                                   09/08/2015 21:32:16 PAGE 1   
+
+
+C51 COMPILER V9.50a, COMPILATION OF MODULE EX
+OBJECT MODULE PLACED IN ex.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ex.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include<reg51.h>           //  包含51单片机寄存器定义的头文件
+   2           void delay(void)        //延时函数，延时约0.6毫秒
+   3          {
+   4   1         unsigned char i;
+   5   1        for(i=0;i<2000;i++)  
+   6   1                 ;
+   7   1       }
+   8          void main(void)
+   9          {
+  10   1         while(1)    //
+  11   1         {
+  12   2            P0=1;
+  13   2            delay();
+  14   2            P0=0;
+  15   2            delay();
+  16   2         } 
+  17   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     30    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

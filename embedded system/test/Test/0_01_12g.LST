@@ -1,0 +1,143 @@
+C51 COMPILER V9.52.0.0   0_01_12G                                                          12/01/2015 17:11:54 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE 0_01_12G
+OBJECT MODULE PLACED IN 0_01_12g.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE 0_01_12g.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include "Main.h"
+   2          #include "0_01_12g.h"
+   3          
+   4          extern sTask SCH_tasks_G[SCH_MAX_TASKS];
+   5          extern tByte Error_code_G;
+   6          
+   7          // ------ Private function prototypes ------------------------------
+   8          
+   9          static void SCH_Manual_Timer0_Reload(void);
+  10          
+  11          void SCH_Init_T0(void) 
+  12             {
+  13   1         tByte i;
+  14   1      
+  15   1         for (i = 0; i < SCH_MAX_TASKS; i++) 
+  16   1            {
+  17   2            SCH_Delete_Task(i);
+  18   2            }
+  19   1      
+  20   1         // Reset the global error variable
+  21   1         // - SCH_Delete_Task() will generate an error code, 
+  22   1         //   (because the task array is empty)
+  23   1         Error_code_G = 0;
+  24   1      
+  25   1         // Using Timer 0, 16-bit manual reload
+  26   1         TMOD &= 0xF0; // Clear all T0 bits (T1 left unchanged)
+  27   1         TMOD |= 0x01; // Set required T0 bits (T1 left unchanged) 
+  28   1      
+  29   1         // Sets up timer reload values
+  30   1         SCH_Manual_Timer0_Reload();
+  31   1      
+  32   1         //  Interrupt Timer 0 enabled
+  33   1         ET0  = 1;
+  34   1         }
+  35          
+  36          /*------------------------------------------------------------------*-
+  37          
+  38            SCH_Start()
+  39          
+  40            Starts the scheduler, by enabling interrupts.
+  41          
+  42            NOTE: Usually called after all regular tasks are added,
+  43            to keep the tasks synchronised.
+  44          
+  45            NOTE: ONLY THE SCHEDULER INTERRUPT SHOULD BE ENABLED!!! 
+  46           
+  47          -*------------------------------------------------------------------*/
+  48          void SCH_Start(void) 
+  49             {
+  50   1         EA = 1;
+  51   1         }
+  52          
+  53          /*------------------------------------------------------------------*-
+  54          
+  55            SCH_Update
+C51 COMPILER V9.52.0.0   0_01_12G                                                          12/01/2015 17:11:54 PAGE 2   
+
+  56          
+  57            This is the scheduler ISR.  It is called at a rate 
+  58            determined by the timer settings in SCH_Init_T0().
+  59            This version is triggered by Timer 0 interrupts.
+  60           
+  61          -*------------------------------------------------------------------*/
+  62          void SCH_Update(void) interrupt INTERRUPT_Timer_0_Overflow 
+  63             {
+  64   1         tByte Index;
+  65   1      
+  66   1         // Reload the timer
+  67   1         SCH_Manual_Timer0_Reload();
+  68   1      
+  69   1         // NOTE: calculations are in *TICKS* (not milliseconds)
+  70   1         for (Index = 0; Index < SCH_MAX_TASKS; Index++)
+  71   1            {
+  72   2            // Check if there is a task at this location
+  73   2            if (SCH_tasks_G[Index].pTask)
+  74   2               {
+  75   3               if (SCH_tasks_G[Index].Delay == 0)
+  76   3                  {
+  77   4                  // The task is due to run
+  78   4                  SCH_tasks_G[Index].RunMe += 1;  // Inc. the 'Run Me' flag
+  79   4      
+  80   4                  if (SCH_tasks_G[Index].Period)
+  81   4                     {
+  82   5                     // Schedule periodic tasks to run again
+  83   5                     SCH_tasks_G[Index].Delay = SCH_tasks_G[Index].Period;
+  84   5                     }
+  85   4                  }
+  86   3               else
+  87   3                  {
+  88   4                  // Not yet ready to run: just decrement the delay 
+  89   4                  SCH_tasks_G[Index].Delay -= 1;
+  90   4                  }
+  91   3               }         
+  92   2            }
+  93   1         } 
+  94          
+  95          /*------------------------------------------------------------------*-
+  96          -*------------------------------------------------------------------*/
+  97          void SCH_Manual_Timer0_Reload()
+  98             {
+  99   1         // Stop Timer 0
+ 100   1         TR0 = 0;
+ 101   1      
+ 102   1         // 8051, 12 MHz
+ 103   1         // The Timer 0 resolution is 1.000 µs
+ 104   1         // We set the timer at 64336 to generate interrupt after 1 ms
+ 105   1         // -> we are generating timer ticks at ~1 ms intervals
+ 106   1         TL0  = 0x18;
+ 107   1         TH0  = 0xFC;
+ 108   1      
+ 109   1         //  Start Timer 0
+ 110   1         TR0  = 1;
+ 111   1         }
+ 112          
+ 113          /*------------------------------------------------------------------*-
+ 114            ---- END OF FILE -------------------------------------------------
+ 115          -*------------------------------------------------------------------*/
+ 116          
+
+C51 COMPILER V9.52.0.0   0_01_12G                                                          12/01/2015 17:11:54 PAGE 3   
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    196    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
